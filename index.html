@@ -92,7 +92,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <h2 class="title is-3;" style="text-align: center;">Real-world Experiments</h2>
+      <h2 class="title is-3;" style="text-align: center;">Real-World Experiments</h2>
       <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">1. Formation Convergence</h2>
       <video poster="" id="tree"controls muted playsinline height="100%">
         <!-- Your video here -->
@@ -120,7 +120,7 @@
       <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">3. Formation Transition</h2>
       <video poster="" id="tree"  controls muted playsinline height="100%">
         <!-- Your video here -->
-        <source src="static/videos/real-obs-dynamic.mp4"
+        <source src="static/videos/real-transition.mp4"
         type="video/mp4"> 
       </video>
     </div>
@@ -132,67 +132,23 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <h2 class="title is-3;" style="text-align: center;">Interactive Testing of Typical VICS Applications</h2>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">1. Smart Streetlight: Physical Light + Physical Vehicle (Traditional Way)</h2>
-      <video poster="" id="tree"  controls muted  playsinline loop height="100%">
+      <h2 class="title is-3;" style="text-align: center;">Simulation</h2>
+      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">1. Formation Navigation in Obstacle-Rich Environments</h2>
+      <video poster="" id="tree"  controls muted  playsinline height="100%">
         <!-- Your video here -->
-        <source src="static/videos/real-vehicle-real-light.mp4"
+        <source src="static/videos/sim-navigation-dense.mp4"
         type="video/mp4">
       </video>
-      <h2 class="subtitle has-text-centered">
-       Virtual Lights with Virtual Vehicles in simulation is another more widely adopted testing approach.
-      </h2>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2. Smart Streetlight: Virtual Light + Manual Physical Vehicle (IMPACT's Way)</h2>
-      <video poster="" id="tree"  controls muted  playsinline loop height="100%">
+      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2. Continuous Formation Navigation</h2>
+      <video poster="" id="tree"  controls muted  playsinline height="100%">
         <!-- Your video here -->
-        <source src="static/videos/real-vehicle-virtual-lightV2.mp4"
+        <source src="static/videos/sim-continuous.mp4"
         type="video/mp4">
       </video>
-      <h2 class="subtitle has-text-centered">
-       The vehicle is physical and controlled by a human via a game controller, directly introducing stochastic human behaviors alongside real-world vehicle state update rates and precision, while the streetlights are virtual to avoid energy costs caused by frequent switching.
-      </h2>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">3. Smart Barrier Gate: Physical Gate + Physical Vehicle (Traditional Way)</h2>
-      <video poster="" id="tree"  controls muted  playsinline loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/real-vehicle-real-gate.mp4"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-       Virtual Gates with Virtual Vehicles in simulation is another more widely adopted testing approach.
-      </h2>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">4. Smart Barrier Gate: Virtual Gate + Manual Physical Vehicle (IMPACT's Way)</h2>
-      <video poster="" id="tree"  controls muted  playsinline loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/virtual-gate-real-vehicle.mp4"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-       Virtual barrier gates and physical vehicles are used to prevent potential collision damage. 
-       The virtual vehicle, serving as the digital twin of the physical one, illustrating synchronized operation and real-time cross-platform interaction between the physical and virtual environments.
-      </h2>
     </div>
   </div>
 </section>
 <!-- End teaser video -->
-
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <h2 class="title is-3" style="text-align: center;">Experiment: Human-injected Brake Perturbations.</h2>
-      <video poster="" id="tree" controls muted  playsinline loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/exp_bra0807-partCV3.mp4"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-       Human operator injects head-vehicle braking disturbance via the MR HMD (Mixed Reality Head-Mounted Display).
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
-
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
@@ -202,13 +158,12 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-Sufficient testing under corner cases is critical for the long-term operation of vehicle-infrastructure cooperation systems (VICS). 
-However, existing corner-case generation methods are primarily AI-driven, and VICS testing under corner cases is typically limited to simulation. 
-In this paper, we introduce an L5 ''Interactable'' level to the VICS digital twin (VICS-DT) taxonomy, extending beyond the conventional L4 ''Optimizable'' level.
-We further propose an L5-level VICS testing framework, IMPACT (Interactive Mixed-digital-twin Paradigm for Advanced Cooperative vehicle-infrastructure Testing). 
-By enabling direct human interactions with VICS entities, IMPACT incorporates highly uncertain and unpredictable human behaviors into the testing loop, naturally generating high-quality corner cases that complement AI-based methods. 
-Furthermore, the mixedDT-enabled ''Physical-Virtual Action Interaction'' facilitates safe VICS testing under corner cases, incorporating real-world environments and entities rather than purely in simulation. 
-Finally, we implement IMPACT on the I-VIT (Interactive Vehicle-Infrastructure Testbed), and experiments demonstrate its effectiveness.          
+Formation control of wheeled mobile robots (WMRs) has been extensively studied due to its broad applications in fields such as logistics transportation and resource exploration. 
+However, existing works mainly focus on tracking predefined formations, which limits their adaptability to complex real-world environments. 
+To address this, we propose REACT (Real-time Environment-Adaptive architecture for Continuous formation navigaTion), a hierarchical architecture integrating centralized formation generation and distributed formation maintenance. 
+Specifically, the upper layer generates new environment-adaptive formations when necessary and uses the proposed TCF-R2T (Trajectory-Conflict-Free Robot-to-Target assignment) algorithm to compute conflict-free WMR-to-target assignments in polynomial time, enabling timely formation transitions without trajectory conflicts. 
+At the lower layer, each WMR executes the developed JSTP (Joint Spatio-Temporal trajectory Planning) method to maintain the generated formation by simultaneously  optimizing spatial positions and temporal durations, thereby enhancing coordination among WMRs and enabling continuous navigation in obstacle-rich environments and dynamic-obstacle scenarios. Simulation and real-world experiments validate the effectiveness and practical applicability of REACT. 
+Experimental videos are available at our project website.
           </p>
         </div>
       </div>
