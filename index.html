@@ -99,30 +99,182 @@
         <source src="static/videos/real-convergence.mp4"
         type="video/mp4">
       </video>
+  <div class="motiv-contrib-block">
+    <div class="contrib-list">
+      <div class="contrib-accordion">
+        <div class="contrib-item contrib-item-clickable" onclick="toggleContribItem(this)">
+          <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
+          <div class="contrib-content">
+            <p class="contrib-heading">Results &amp; Metrics <i class="fas fa-chevron-down motiv-play-hint motiv-chevron"></i><span class="motiv-click-hint">click</span></p>
+            <p>Click to view quantitative evaluation results including formation error metrics and speed profiles. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
+          </div>
+        </div>
+        <div class="motiv-inline-video">
+          <div class="contrib-metric-tabs">
+            <button class="contrib-metric-tab is-active" data-metric="formation-error">Formation Error Metric</button>
+            <button class="contrib-metric-tab" data-metric="velocity">Speed</button>
+            <button class="contrib-metric-tab" data-metric="convergence-wmr-index">WMR-Index</button>
+          </div>
+          <div class="contrib-metric-panel" id="metric-formation-error">
+            <img src="static/images/convergence-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-velocity" style="display:none;">
+            <img src="static/images/convergence-sped.jpg" alt="Velocity Metric" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-convergence-wmr-index" style="display:none;">
+            <img src="static/images/WMR-index-V1.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
       <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2.1 Obstacle Avoidance: Inside</h2>
       <video poster="" id="tree"  controls muted playsinline height="100%">
         <!-- Your video here -->
         <source src="static/videos/real-obs-inside-V2.mp4"
         type="video/mp4">
       </video>
+  <div class="motiv-contrib-block">
+    <div class="contrib-list">
+      <div class="contrib-accordion">
+        <div class="contrib-item contrib-item-clickable" onclick="toggleContribItem(this)">
+          <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
+          <div class="contrib-content">
+            <p class="contrib-heading">Results &amp; Metrics <i class="fas fa-chevron-down motiv-play-hint motiv-chevron"></i><span class="motiv-click-hint">click</span></p>
+            <p>Click to view quantitative evaluation results including formation error metrics and lateral position (WMR 2 and WMR 3, whose y-trajectories change for obstacle avoidance). For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
+          </div>
+        </div>
+        <div class="motiv-inline-video">
+          <div class="contrib-metric-tabs">
+            <button class="contrib-metric-tab is-active" data-metric="obs-inside-formation-error">Formation Error Metric</button>
+            <button class="contrib-metric-tab" data-metric="obs-inside-lateral">Lateral Position</button>
+            <button class="contrib-metric-tab" data-metric="obs-inside-wmr-index">WMR-Index</button>
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-inside-formation-error">
+            <img src="static/images/obs-inside-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-inside-lateral" style="display:none;">
+            <img src="static/images/obs-inside-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-inside-wmr-index" style="display:none;">
+            <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
       <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2.2 Obstacle Avoidance: Outside</h2>
       <video poster="" id="tree"  controls muted playsinline height="100%">
         <!-- Your video here -->
         <source src="static/videos/real-obs-outside.mp4"
         type="video/mp4"> 
       </video>
+  <div class="motiv-contrib-block">
+    <div class="contrib-list">
+      <div class="contrib-accordion">
+        <div class="contrib-item contrib-item-clickable" onclick="toggleContribItem(this)">
+          <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
+          <div class="contrib-content">
+            <p class="contrib-heading">Results &amp; Metrics <i class="fas fa-chevron-down motiv-play-hint motiv-chevron"></i><span class="motiv-click-hint">click</span></p>
+            <p>Click to view quantitative evaluation results including formation error metrics and lateral position (WMR 2 and WMR 3, whose y-trajectories change for obstacle avoidance). For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
+          </div>
+        </div>
+        <div class="motiv-inline-video">
+          <div class="contrib-metric-tabs">
+            <button class="contrib-metric-tab is-active" data-metric="obs-outside-formation-error">Formation Error Metric</button>
+            <button class="contrib-metric-tab" data-metric="obs-outside-lateral">Lateral Position</button>
+            <button class="contrib-metric-tab" data-metric="obs-outside-wmr-index">WMR-Index</button>
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-outside-formation-error">
+            <img src="static/images/obs-outside-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-outside-lateral" style="display:none;">
+            <img src="static/images/obs-outside-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-outside-wmr-index" style="display:none;">
+            <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
       <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2.3 Obstacle Avoidance: Dynamic</h2>
       <video poster="" id="tree"  controls muted playsinline height="100%">
         <!-- Your video here -->
         <source src="static/videos/real-obs-dynamic.mp4"
         type="video/mp4"> 
       </video>
+  <div class="motiv-contrib-block">
+    <div class="contrib-list">
+      <div class="contrib-accordion">
+        <div class="contrib-item contrib-item-clickable" onclick="toggleContribItem(this)">
+          <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
+          <div class="contrib-content">
+            <p class="contrib-heading">Results &amp; Metrics <i class="fas fa-chevron-down motiv-play-hint motiv-chevron"></i><span class="motiv-click-hint">click</span></p>
+            <p>Click to view quantitative evaluation results including formation error metrics and lateral position (WMR 2 and WMR 3, whose y-trajectories change for obstacle avoidance), as well as the view from the motion capture system. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
+          </div>
+        </div>
+        <div class="motiv-inline-video">
+          <div class="contrib-metric-tabs">
+            <button class="contrib-metric-tab is-active" data-metric="obs-dynamic-formation-error">Formation Error Metric</button>
+            <button class="contrib-metric-tab" data-metric="obs-dynamic-lateral">Lateral Position</button>
+            <button class="contrib-metric-tab" data-metric="obs-dynamic-mocap">Motion Capture View</button>
+            <button class="contrib-metric-tab" data-metric="obs-dynamic-wmr-index">WMR-Index</button>
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-dynamic-formation-error">
+            <img src="static/images/obs-dynamic-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-dynamic-lateral" style="display:none;">
+            <img src="static/images/obs-dynamic-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-dynamic-mocap" style="display:none;">
+            <video controls playsinline style="width:100%; display:block; margin:0 auto;">
+              <source src="static/videos/obs-dynamic-FZMotion.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="contrib-metric-panel" id="metric-obs-dynamic-wmr-index" style="display:none;">
+            <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
       <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">3. Formation Transition</h2>
       <video poster="" id="tree"  controls muted playsinline height="100%">
         <!-- Your video here -->
         <source src="static/videos/real-transition.mp4"
         type="video/mp4"> 
       </video>
+  <div class="motiv-contrib-block">
+    <div class="contrib-list">
+      <div class="contrib-accordion">
+        <div class="contrib-item contrib-item-clickable" onclick="toggleContribItem(this)">
+          <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
+          <div class="contrib-content">
+            <p class="contrib-heading">Results &amp; Metrics <i class="fas fa-chevron-down motiv-play-hint motiv-chevron"></i><span class="motiv-click-hint">click</span></p>
+            <p>Click to view quantitative evaluation results including formation error metrics and lateral position. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
+          </div>
+        </div>
+        <div class="motiv-inline-video">
+          <div class="contrib-metric-tabs">
+            <button class="contrib-metric-tab is-active" data-metric="transition-formation-error">Formation Error Metric</button>
+            <button class="contrib-metric-tab" data-metric="transition-lateral">Lateral Position</button>
+            <button class="contrib-metric-tab" data-metric="transition-wmr-index">WMR-Index</button>
+          </div>
+          <div class="contrib-metric-panel" id="metric-transition-formation-error">
+            <img src="static/images/transition-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-transition-lateral" style="display:none;">
+            <img src="static/images/transition-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
+          </div>
+          <div class="contrib-metric-panel" id="metric-transition-wmr-index" style="display:none;">
+            <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 </section>
@@ -191,7 +343,6 @@ Experimental videos are available at our project website.
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3" style="max-width: 80%; margin: auto; text-align: center;">REACT Architecture</h2> <!-- Title for the image -->
-      <br>
       <div class="image-container has-text-centered" style="max-width: 60%; margin: auto;">
         <!-- Your image here with adjusted width -->
         <img src="static/images/REACT-architecture-V3.jpg" alt="Descriptive Alt Text" style="height: auto;"/>
