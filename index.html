@@ -385,9 +385,20 @@ Experimental videos are available at our project website.
     </div>
   </div>
 </footer>
-<!-- visitor location tracking -->
 
+<!-- visitor location tracking -->
 <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="clustrmaps-wrapper" class="image-container has-text-centered" style="max-width: 30%; margin: auto; pointer-events: none;">
+        <!-- Your image here with adjusted width -->
+        <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=g0sucXLX3Dp62zu38Mln8IQNG6ha4LjuHu036YSh6BY&cl=ffffff&w=a"></script>   
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small" style="display:none;">
   <div class="hero-body">
     <div class="container">
       <div id="clustrmaps-wrapper" class="image-container has-text-centered" style="max-width: 30%; margin: auto;">
@@ -397,19 +408,11 @@ Experimental videos are available at our project website.
     </div>
   </div>
 </section>
-<script>
-  document.getElementById('clustrmaps-wrapper').addEventListener('click', function(e) {
-    var target = e.target.closest('a');
-    if (target && target.href) {
-      e.preventDefault();
-      window.open(target.href, '_blank');
-    }
-  }, true);
-</script>
-<!-- Statcounter tracking code -->
-  
 
-<div style="text-align: center;">
+
+
+<!-- Statcounter tracking code -->
+<div style="text-align: center; pointer-events: none;">
 <!-- Default Statcounter code for REACT
 https://dongjh20.github.io/REACT/ -->
 <script type="text/javascript">
