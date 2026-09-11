@@ -2,3 +2,6 @@
 .vscode/
 setting.json
 settings.json
+
+# Original videos and local conversion files
+/.local-video-backup/
