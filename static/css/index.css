@@ -473,8 +473,7 @@ hit.teaser-video-item {
   transition: var(--transition);
 }
 
-.motiv-card:hover .motiv-click-hint,
-.contrib-item-clickable:hover .motiv-click-hint {
+.motiv-card:hover .motiv-click-hint {
   background: var(--primary-color);
   color: #fff;
   border-color: var(--primary-color);
@@ -516,6 +515,12 @@ hit.teaser-video-item {
 .motiv-inline-video.is-open {
   max-height: 900px;
   margin-top: 0.8rem;
+}
+
+.motiv-contrib-block .motiv-inline-video {
+  max-height: none;
+  margin-top: 0.8rem;
+  transition: none;
 }
 
 .motiv-inline-video video {
@@ -580,18 +585,12 @@ hit.teaser-video-item {
   border-color: #778899 !important;
 }
 
-.contrib-item.is-active {
-  border-left-color: var(--primary-color);
-  box-shadow: var(--shadow-md);
-}
-
 /* Chevron rotation on expand */
 .motiv-chevron {
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.motiv-card.is-active .motiv-chevron,
-.contrib-item.is-active .motiv-chevron {
+.motiv-card.is-active .motiv-chevron {
   transform: rotate(180deg);
 }
 
@@ -622,11 +621,6 @@ hit.teaser-video-item {
   transition: var(--transition);
 }
 
-.contrib-item:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateX(4px);
-}
-
 .contrib-index {
   flex-shrink: 0;
   font-size: 1.5rem;
@@ -649,29 +643,7 @@ hit.teaser-video-item {
   line-height: 1.6;
 }
 
-.contrib-item-clickable {
-  cursor: pointer;
-}
-
-.contrib-item-clickable:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateX(4px);
-  border-left-color: var(--primary-color);
-}
-
-.contrib-item-clickable .motiv-play-hint {
-  font-size: 0.7rem;
-  color: var(--text-light);
-  margin-left: 0.3rem;
-  vertical-align: middle;
-  transition: color 0.2s ease;
-}
-
-.contrib-item-clickable:hover .motiv-play-hint {
-  color: var(--primary-color);
-}
-
-/* end contribution video modal */
+/* end contribution results */
 
 /* ── Benchmark Comparison ── */
 .bmk-tabs {

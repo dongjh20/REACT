@@ -188,34 +188,7 @@ function toggleMotivCard(card, src) {
   videoEl.play().catch(() => {});
 }
 
-// Contribution item accordion
-function toggleContribItem(item) {
-  const accordion = item.closest('.contrib-accordion');
-  const panel = accordion.querySelector('.motiv-inline-video');
-  const videoEl = panel ? panel.querySelector('video') : null;
-  const isActive = item.classList.contains('is-active');
-
-  // Close all open contrib accordions
-  document.querySelectorAll('.contrib-accordion .contrib-item').forEach(i => {
-    i.classList.remove('is-active');
-    const p = i.closest('.contrib-accordion').querySelector('.motiv-inline-video');
-    if (p) {
-      const v = p.querySelector('video');
-      if (v) v.pause();
-      p.classList.remove('is-open');
-    }
-  });
-
-  if (!isActive) {
-    item.classList.add('is-active');
-    if (panel) panel.classList.add('is-open');
-    if (videoEl && !videoEl.closest('.contrib-metric-panel')) {
-      videoEl.play().catch(() => {});
-    }
-  }
-}
-
-// Metric tabs inside contrib accordion
+// Metric tabs inside contribution results
 document.addEventListener('click', function(e) {
   var tab = e.target.closest('.contrib-metric-tab');
   if (!tab) return;
