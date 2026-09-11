@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="starlight" cx="45%" cy="38%" r="65%">
+      <stop offset="0" stop-color="#fffde7"/>
+      <stop offset="0.45" stop-color="#ffe66d"/>
+      <stop offset="1" stop-color="#f5b800"/>
+    </radialGradient>
+  </defs>
+  <path d="M32 8 38.5 25.1 56.7 26 42.5 37.4 47.3 55 32 45 16.7 55 21.5 37.4 7.3 26 25.5 25.1Z" fill="url(#starlight)" stroke="#e9ad16" stroke-width="0.8" stroke-linejoin="round"/>
+</svg>
