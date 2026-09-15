@@ -54,7 +54,7 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">Demonstration for REACT</h1>
               <h2 class="subtitle has-text-centered"> <!-- Adjusted font size and alignment -->
-                REACT: Real-time Environment-Adaptive architecture for Continuous formation navigaTion.
+                REACT: a Real-time Environment-Adaptive architecture for Continuous formation navigaTion <br> of wheeled mobile robots (WMRs).
               </h2>
             <div class="is-size-5 publication-authors">
 
@@ -101,83 +101,27 @@
 <!-- Teaser video-->
 <section class="hero teaser">
   <div class="container is-max-desktop">
+    <div class="hero-body" style="padding-top: 1.5rem;">
+      <h2 class="title is-3;" style="text-align: center;">Simulation</h2>
+      <video poster="" id="tree"  controls muted  playsinline height="100%">
+        <!-- Your video here -->
+        <source src="static/videos/formation_navigation_four_panels.mp4"
+        type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
     <div class="hero-body" style="padding-top: 1.6rem;">
       <h2 class="title is-3;" style="text-align: center;">Real-World Experiments</h2>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">1. Formation Convergence</h2>
-      <video poster="" id="tree"controls muted playsinline height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/real-convergence.mp4?v=h264-20260911"
-        type="video/mp4">
-      </video>
-  <div class="motiv-contrib-block">
-    <div class="contrib-list">
-      <div class="contrib-accordion">
-        <div class="contrib-item">
-          <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
-          <div class="contrib-content">
-            <p class="contrib-heading">Results &amp; Metrics</p>
-            <p>Quantitative evaluation results include formation error metrics and speed profiles. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
-          </div>
-        </div>
-        <div class="motiv-inline-video">
-          <div class="contrib-metric-tabs">
-            <button class="contrib-metric-tab is-active" data-metric="formation-error">Formation Error Metric</button>
-            <button class="contrib-metric-tab" data-metric="velocity">Speed</button>
-            <button class="contrib-metric-tab" data-metric="convergence-wmr-index">WMR-Index</button>
-          </div>
-          <div class="contrib-metric-panel" id="metric-formation-error">
-            <img src="static/images/convergence-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
-          </div>
-          <div class="contrib-metric-panel" id="metric-velocity" style="display:none;">
-            <img src="static/images/convergence-sped.jpg" alt="Velocity Metric" style="width:50%; display:block; margin:0 auto;">
-          </div>
-          <div class="contrib-metric-panel" id="metric-convergence-wmr-index" style="display:none;">
-            <img src="static/images/WMR-index-V1.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2.1 Obstacle Avoidance: Inside</h2>
+            <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">1. Continuous Formation Navigation</h2>
       <video poster="" id="tree"  controls muted playsinline height="100%">
         <!-- Your video here -->
-        <source src="static/videos/real-obs-inside-V2.mp4?v=h264-20260911"
-        type="video/mp4">
-      </video>
-  <div class="motiv-contrib-block">
-    <div class="contrib-list">
-      <div class="contrib-accordion">
-        <div class="contrib-item">
-          <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
-          <div class="contrib-content">
-            <p class="contrib-heading">Results &amp; Metrics</p>
-            <p>Quantitative evaluation results include formation error metrics and lateral position (WMR 2 and WMR 3, whose y-trajectories change for obstacle avoidance). For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
-          </div>
-        </div>
-        <div class="motiv-inline-video">
-          <div class="contrib-metric-tabs">
-            <button class="contrib-metric-tab is-active" data-metric="obs-inside-formation-error">Formation Error Metric</button>
-            <button class="contrib-metric-tab" data-metric="obs-inside-lateral">Lateral Position</button>
-            <button class="contrib-metric-tab" data-metric="obs-inside-wmr-index">WMR-Index</button>
-          </div>
-          <div class="contrib-metric-panel" id="metric-obs-inside-formation-error">
-            <img src="static/images/obs-inside-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
-          </div>
-          <div class="contrib-metric-panel" id="metric-obs-inside-lateral" style="display:none;">
-            <img src="static/images/obs-inside-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
-          </div>
-          <div class="contrib-metric-panel" id="metric-obs-inside-wmr-index" style="display:none;">
-            <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2.2 Obstacle Avoidance: Outside</h2>
-      <video poster="" id="tree"  controls muted playsinline height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/real-obs-outside.mp4?v=h264-20260911"
+        <source src="static/videos/real-transition.mp4?v=h264-20260911"
         type="video/mp4"> 
       </video>
   <div class="motiv-contrib-block">
@@ -187,29 +131,30 @@
           <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
           <div class="contrib-content">
             <p class="contrib-heading">Results &amp; Metrics</p>
-            <p>Quantitative evaluation results include formation error metrics and lateral position (WMR 2 and WMR 3, whose y-trajectories change for obstacle avoidance). For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
+            <p>Quantitative evaluation results include formation error metrics and lateral position. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
           </div>
         </div>
         <div class="motiv-inline-video">
           <div class="contrib-metric-tabs">
-            <button class="contrib-metric-tab is-active" data-metric="obs-outside-formation-error">Formation Error Metric</button>
-            <button class="contrib-metric-tab" data-metric="obs-outside-lateral">Lateral Position</button>
-            <button class="contrib-metric-tab" data-metric="obs-outside-wmr-index">WMR-Index</button>
+            <button class="contrib-metric-tab is-active" data-metric="transition-formation-error">Formation Error Metric</button>
+            <button class="contrib-metric-tab" data-metric="transition-lateral">Lateral Position</button>
+            <button class="contrib-metric-tab" data-metric="transition-wmr-index">WMR-Index</button>
           </div>
-          <div class="contrib-metric-panel" id="metric-obs-outside-formation-error">
-            <img src="static/images/obs-outside-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
+          <div class="contrib-metric-panel" id="metric-transition-formation-error">
+            <img src="static/images/transition-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
           </div>
-          <div class="contrib-metric-panel" id="metric-obs-outside-lateral" style="display:none;">
-            <img src="static/images/obs-outside-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
+          <div class="contrib-metric-panel" id="metric-transition-lateral" style="display:none;">
+            <img src="static/images/transition-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
           </div>
-          <div class="contrib-metric-panel" id="metric-obs-outside-wmr-index" style="display:none;">
+          <div class="contrib-metric-panel" id="metric-transition-wmr-index" style="display:none;">
             <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
           </div>
         </div>
       </div>
     </div>
+  
   </div>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2.3 Obstacle Avoidance: Dynamic</h2>
+      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2. Dynamic Obstacle Avoidance</h2>
       <video poster="" id="tree"  controls muted playsinline height="100%">
         <!-- Your video here -->
         <source src="static/videos/real-obs-dynamic.mp4?v=h264-20260911"
@@ -250,67 +195,13 @@
       </div>
     </div>
   </div>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">3. Formation Transition</h2>
-      <video poster="" id="tree"  controls muted playsinline height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/real-transition.mp4?v=h264-20260911"
-        type="video/mp4"> 
-      </video>
-  <div class="motiv-contrib-block">
-    <div class="contrib-list">
-      <div class="contrib-accordion">
-        <div class="contrib-item">
-          <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
-          <div class="contrib-content">
-            <p class="contrib-heading">Results &amp; Metrics</p>
-            <p>Quantitative evaluation results include formation error metrics and lateral position. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
-          </div>
-        </div>
-        <div class="motiv-inline-video">
-          <div class="contrib-metric-tabs">
-            <button class="contrib-metric-tab is-active" data-metric="transition-formation-error">Formation Error Metric</button>
-            <button class="contrib-metric-tab" data-metric="transition-lateral">Lateral Position</button>
-            <button class="contrib-metric-tab" data-metric="transition-wmr-index">WMR-Index</button>
-          </div>
-          <div class="contrib-metric-panel" id="metric-transition-formation-error">
-            <img src="static/images/transition-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
-          </div>
-          <div class="contrib-metric-panel" id="metric-transition-lateral" style="display:none;">
-            <img src="static/images/transition-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
-          </div>
-          <div class="contrib-metric-panel" id="metric-transition-wmr-index" style="display:none;">
-            <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
     </div>
   </div>
 </section>
 <!-- End teaser video -->
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body" style="padding-top: 1.5rem;">
-      <h2 class="title is-3;" style="text-align: center;">Simulation</h2>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">1. Formation Navigation in Obstacle-Rich Environments</h2>
-      <video poster="" id="tree"  controls muted  playsinline height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/sim-dense-navigation.mp4?v=h264-20260911"
-        type="video/mp4">
-      </video>
-      <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">2. Continuous Formation Navigation</h2>
-      <video poster="" id="tree"  controls muted  playsinline height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/sim-continuous.mp4?v=h264-20260911"
-        type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
+
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
@@ -320,12 +211,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-Formation control of wheeled mobile robots (WMRs) has been extensively studied due to its broad applications in fields such as logistics transportation and resource exploration. 
-However, existing works mainly focus on tracking predefined formations, which limits their adaptability to complex real-world environments. 
-To address this, we propose REACT (Real-time Environment-Adaptive architecture for Continuous formation navigaTion), a hierarchical architecture integrating centralized formation generation and distributed formation maintenance. 
-Specifically, the upper layer generates new environment-adaptive formations when necessary and uses the proposed TCF-R2T (Trajectory-Conflict-Free Robot-to-Target assignment) algorithm to compute conflict-free WMR-to-target assignments in polynomial time, enabling timely formation transitions without trajectory conflicts. 
-At the lower layer, each WMR executes the developed JSTP (Joint Spatio-Temporal trajectory Planning) method to maintain the generated formation by simultaneously  optimizing spatial positions and temporal durations, thereby enhancing coordination among WMRs and enabling continuous navigation in obstacle-rich environments and dynamic-obstacle scenarios. Simulation and real-world experiments validate the effectiveness and practical applicability of REACT. 
-Experimental videos are available at our project website.
+Formation control of wheeled mobile robots (WMRs) has been widely studied due to its broad applications. 
+However, existing studies primarily focus on tracking predefined formations, with limited adaptability to changing environments. 
+To address this limitation, we propose REACT, a Real-time Environment-Adaptive architecture for Continuous formation navigaTion that integrates centralized formation generation with distributed formation maintenance.
+The upper layer monitors the environment in real time and generates adaptive formations when needed, using the proposed TCF-R2T (Trajectory-Conflict-Free Robot-to-Target assignment) algorithm to compute optimal assignments in polynomial time for timely, conflict-free formation transitions.
+At the lower layer, each WMR continuously employs JSTP (Joint Spatio-Temporal trajectory Planning) to maintain the given formation by jointly optimizing spatial positions and segment durations, improving coordination over spatial-only optimization with fixed durations. 
+By coordinating these two layers, REACT enables WMRs to adapt their formations to changing navigable areas while maintaining continuous navigation.
+Both simulation and real-world experiments validate the effectiveness and practical adaptability of REACT. Experimental videos are available on our project website.
           </p>
         </div>
       </div>
