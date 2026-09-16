@@ -1,0 +1,443 @@
+{
+  "completed": true,
+  "description": "The historical run uses instantaneous formation switching (TVFR disabled); the current run enables TVFR. These are historical system versions, not a controlled single-factor ablation: corridor positions, gating, preview and other cost settings also differ. Original records are not modified.",
+  "sources": {
+    "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_145854_166506": {
+      "config.json": "d9c4b574237fda85587683e894b13526613348c090b975dfe5cbf19414000da2",
+      "geometry.json": "35ec23825ccb4eb4ce0872dbefeefff0efb561b1b58b8e65c1db616eeed716f1",
+      "events.json": "10d8ef9009d3d1dadcaad49b80503ab4f220fdb6be77d52006fd44cf08ba9e03",
+      "odometry.npz": "be54d4f2b7f1cf8ae9b50a1cbded6023ebba8046cf3e319db87dc357c554d2a7"
+    },
+    "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_210201_219110": {
+      "config.json": "8779c787bfb1566a0a0e7e3d35b1a35cbf0dbf1e2b748ea21278e228a71dc425",
+      "geometry.json": "7fb86822d280c082237ecb0605e0518613b63725f8f2281110e4a3983c60af1f",
+      "events.json": "174094fa5c206319b3e415d26952ce49c200b1377cb6c23f06a8f7ea42254413",
+      "odometry.npz": "978928bb562dd9d34fd26128785b01b1882dbcd6b0ae3c202ef43677d5530880"
+    }
+  },
+  "style": {
+    "pre_seconds": 2.0,
+    "post_seconds": 16.0,
+    "sample_seconds": 0.02,
+    "fps": 25,
+    "width": 1920,
+    "scene_height": 500,
+    "title_height": 58,
+    "column_height": 44,
+    "footer_height": 40,
+    "title_font_px": 34,
+    "column_font_px": 30,
+    "wmr_font_px": 24,
+    "footer_font_px": 24,
+    "font_size": 17,
+    "legend_font_size": 15,
+    "trajectory_figsize": [
+      15,
+      4.8
+    ],
+    "transient_figsize": [
+      15,
+      12
+    ],
+    "transient_row_spacing": 0.2,
+    "transient_padding_inches": 0.08,
+    "transient_legend_font_size": 15,
+    "transient_legend_locations": [
+      "upper right",
+      "center right",
+      "upper left"
+    ],
+    "transient_legend_anchors": [
+      [
+        0.98,
+        0.98
+      ],
+      [
+        0.98,
+        0.28
+      ],
+      [
+        0.02,
+        0.98
+      ]
+    ],
+    "dpi": 180,
+    "trajectory_linewidth": 1.6,
+    "velocity_linewidth": 1.1,
+    "trail_seconds": 6.0,
+    "trail_width_px": 2,
+    "before_color": "#b96f46",
+    "current_color": "#286b91"
+  },
+  "transitions": [
+    {
+      "transition": "3_to_2",
+      "measurement_window_seconds": [
+        0,
+        16.0
+      ],
+      "display_window_seconds": [
+        -2.0,
+        16.0
+      ],
+      "methods": [
+        {
+          "label": "Without TVFR",
+          "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_145854_166506",
+          "metrics": {
+            "per_wmr": [
+              {
+                "wmr": 0,
+                "excess_lateral_travel_m": 1.467316476637202,
+                "peak_abs_vy_mps": 1.1414595850084785,
+                "minimum_vx_mps": 0.5827698770052856,
+                "peak_abs_yaw_deg": 62.88380826102775,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 1,
+                "excess_lateral_travel_m": 0.6995430190382963,
+                "peak_abs_vy_mps": 0.928525336721224,
+                "minimum_vx_mps": -0.23446003377240382,
+                "peak_abs_yaw_deg": 104.17141787673557,
+                "reverse_distance_m": 0.03819331658515148
+              },
+              {
+                "wmr": 2,
+                "excess_lateral_travel_m": 0.9347740576015378,
+                "peak_abs_vy_mps": 1.3227184218095027,
+                "minimum_vx_mps": 0.25987220956576124,
+                "peak_abs_yaw_deg": 78.77976941135083,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 3,
+                "excess_lateral_travel_m": 3.0397890757508463,
+                "peak_abs_vy_mps": 1.1202902319727477,
+                "minimum_vx_mps": -0.20271209390185452,
+                "peak_abs_yaw_deg": 101.69754561630677,
+                "reverse_distance_m": 0.07647334508914783
+              },
+              {
+                "wmr": 4,
+                "excess_lateral_travel_m": 2.601314885827265,
+                "peak_abs_vy_mps": 0.8451062960589771,
+                "minimum_vx_mps": -0.5764715301158024,
+                "peak_abs_yaw_deg": 148.16432842346177,
+                "reverse_distance_m": 0.21802282369882478
+              },
+              {
+                "wmr": 5,
+                "excess_lateral_travel_m": 2.6594394720831227,
+                "peak_abs_vy_mps": 0.9925252550167463,
+                "minimum_vx_mps": 0.9118126859709761,
+                "peak_abs_yaw_deg": 47.40516493983153,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 6,
+                "excess_lateral_travel_m": 2.57381866792353,
+                "peak_abs_vy_mps": 0.9277310011243299,
+                "minimum_vx_mps": 0.9153741775772964,
+                "peak_abs_yaw_deg": 45.383976113212526,
+                "reverse_distance_m": 0.0
+              }
+            ],
+            "total_excess_lateral_travel_m": 13.975995654861798,
+            "peak_abs_vy_mps": 1.3227184218095027,
+            "minimum_vx_mps": -0.5764715301158024
+          },
+          "tvfr": {
+            "enabled": false,
+            "transition_duration_seconds": 0.0,
+            "evidence": "archived stage configuration; missing/zero means instantaneous switching"
+          },
+          "stage_parameters": {
+            "type": 2,
+            "shape_weight": 5000.0
+          },
+          "switch_time": 1789369157.6113155
+        },
+        {
+          "label": "With TVFR",
+          "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_210201_219110",
+          "metrics": {
+            "per_wmr": [
+              {
+                "wmr": 0,
+                "excess_lateral_travel_m": 0.18724422832703969,
+                "peak_abs_vy_mps": 0.14000776961168906,
+                "minimum_vx_mps": 1.0408375277600657,
+                "peak_abs_yaw_deg": 7.66079033385778,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 1,
+                "excess_lateral_travel_m": 0.09992959661812773,
+                "peak_abs_vy_mps": 0.18290636890653397,
+                "minimum_vx_mps": 1.0237126985155987,
+                "peak_abs_yaw_deg": 10.119628463346068,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 2,
+                "excess_lateral_travel_m": 0.09605686786022893,
+                "peak_abs_vy_mps": 0.15072520275566054,
+                "minimum_vx_mps": 1.0714014275572112,
+                "peak_abs_yaw_deg": 8.005232800643034,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 3,
+                "excess_lateral_travel_m": 0.01679065352139464,
+                "peak_abs_vy_mps": 0.14808248897214335,
+                "minimum_vx_mps": 0.868393407025659,
+                "peak_abs_yaw_deg": 9.676795520670208,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 4,
+                "excess_lateral_travel_m": 0.11848858962395603,
+                "peak_abs_vy_mps": 0.15999175040632763,
+                "minimum_vx_mps": 0.8163525931305236,
+                "peak_abs_yaw_deg": 9.70302990789557,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 5,
+                "excess_lateral_travel_m": 0.11768101896213778,
+                "peak_abs_vy_mps": 0.14002317877535603,
+                "minimum_vx_mps": 1.2025144699250898,
+                "peak_abs_yaw_deg": 6.632835781319769,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 6,
+                "excess_lateral_travel_m": 0.13763165912282194,
+                "peak_abs_vy_mps": 0.15385032092113188,
+                "minimum_vx_mps": 1.2095118419045532,
+                "peak_abs_yaw_deg": 7.249113360370078,
+                "reverse_distance_m": 0.0
+              }
+            ],
+            "total_excess_lateral_travel_m": 0.7738226140357067,
+            "peak_abs_vy_mps": 0.18290636890653397,
+            "minimum_vx_mps": 0.8163525931305236
+          },
+          "tvfr": {
+            "enabled": true,
+            "transition_duration_seconds": 12.0,
+            "evidence": "archived stage configuration; missing/zero means instantaneous switching"
+          },
+          "stage_parameters": {
+            "type": 2,
+            "all_wmr_past_x": -16.0,
+            "transition_duration": 12.0,
+            "formation_preview_time": 3.0,
+            "formation_preview_taper": 1.0,
+            "shape_velocity_weight": 2500.0,
+            "anchor_to_route": true,
+            "shape_weight": 5000.0
+          },
+          "switch_time": 1789390946.516371
+        }
+      ]
+    },
+    {
+      "transition": "1_to_3",
+      "measurement_window_seconds": [
+        0,
+        16.0
+      ],
+      "display_window_seconds": [
+        -2.0,
+        16.0
+      ],
+      "methods": [
+        {
+          "label": "Without TVFR",
+          "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_145854_166506",
+          "metrics": {
+            "per_wmr": [
+              {
+                "wmr": 0,
+                "excess_lateral_travel_m": 0.7681494139861798,
+                "peak_abs_vy_mps": 0.6345031399736609,
+                "minimum_vx_mps": 0.9165989230522285,
+                "peak_abs_yaw_deg": 29.218336214125507,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 1,
+                "excess_lateral_travel_m": 0.4445223198285291,
+                "peak_abs_vy_mps": 0.9026862049695666,
+                "minimum_vx_mps": 0.3276667862853576,
+                "peak_abs_yaw_deg": 70.04956944654248,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 2,
+                "excess_lateral_travel_m": 0.9180600021173477,
+                "peak_abs_vy_mps": 1.1426791257534448,
+                "minimum_vx_mps": -0.3902341974268705,
+                "peak_abs_yaw_deg": 108.85546381906458,
+                "reverse_distance_m": 0.06720605786796155
+              },
+              {
+                "wmr": 3,
+                "excess_lateral_travel_m": 0.7617128676565752,
+                "peak_abs_vy_mps": 0.39558107899347605,
+                "minimum_vx_mps": 0.9781082405986599,
+                "peak_abs_yaw_deg": 19.838906060981024,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 4,
+                "excess_lateral_travel_m": 0.29870751883534474,
+                "peak_abs_vy_mps": 1.1027742870341566,
+                "minimum_vx_mps": 0.653521981343135,
+                "peak_abs_yaw_deg": 59.24341241834646,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 5,
+                "excess_lateral_travel_m": 0.23133524553097118,
+                "peak_abs_vy_mps": 1.15815477515469,
+                "minimum_vx_mps": 0.6479683922120796,
+                "peak_abs_yaw_deg": 60.75575362404011,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 6,
+                "excess_lateral_travel_m": 0.9694867727259346,
+                "peak_abs_vy_mps": 0.532677529258979,
+                "minimum_vx_mps": 0.43109988843379027,
+                "peak_abs_yaw_deg": 34.980439153211755,
+                "reverse_distance_m": 0.0
+              }
+            ],
+            "total_excess_lateral_travel_m": 4.391974140680882,
+            "peak_abs_vy_mps": 1.15815477515469,
+            "minimum_vx_mps": -0.3902341974268705
+          },
+          "tvfr": {
+            "enabled": false,
+            "transition_duration_seconds": 0.0,
+            "evidence": "archived stage configuration; missing/zero means instantaneous switching"
+          },
+          "stage_parameters": {
+            "type": 1,
+            "all_wmr_past_x": 95.0,
+            "shape_weight": 5000.0
+          },
+          "switch_time": 1789369257.8853846
+        },
+        {
+          "label": "With TVFR",
+          "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_210201_219110",
+          "metrics": {
+            "per_wmr": [
+              {
+                "wmr": 0,
+                "excess_lateral_travel_m": 0.07935171689759812,
+                "peak_abs_vy_mps": 0.036234399845554696,
+                "minimum_vx_mps": 1.0615127862077325,
+                "peak_abs_yaw_deg": 1.7964116489008533,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 1,
+                "excess_lateral_travel_m": 0.005448919981740019,
+                "peak_abs_vy_mps": 0.301866117745616,
+                "minimum_vx_mps": 0.8938347541569868,
+                "peak_abs_yaw_deg": 18.657146028899792,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 2,
+                "excess_lateral_travel_m": 0.013503774122733958,
+                "peak_abs_vy_mps": 0.32465116957290074,
+                "minimum_vx_mps": 0.9555073529152338,
+                "peak_abs_yaw_deg": 17.69490014263862,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 3,
+                "excess_lateral_travel_m": 0.005474648101667867,
+                "peak_abs_vy_mps": 0.001649646315722306,
+                "minimum_vx_mps": 1.1911009646732182,
+                "peak_abs_yaw_deg": 0.0781849129777917,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 4,
+                "excess_lateral_travel_m": 0.0003633419994333309,
+                "peak_abs_vy_mps": 0.2836886852788069,
+                "minimum_vx_mps": 1.208926861401965,
+                "peak_abs_yaw_deg": 13.194061927872955,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 5,
+                "excess_lateral_travel_m": 0.021153080766298515,
+                "peak_abs_vy_mps": 0.3058751115896301,
+                "minimum_vx_mps": 1.112649642961195,
+                "peak_abs_yaw_deg": 15.214946438246443,
+                "reverse_distance_m": 0.0
+              },
+              {
+                "wmr": 6,
+                "excess_lateral_travel_m": 0.005560900609123287,
+                "peak_abs_vy_mps": 0.001270758222877457,
+                "minimum_vx_mps": 0.9426260806874833,
+                "peak_abs_yaw_deg": 0.06925599612057319,
+                "reverse_distance_m": 0.0
+              }
+            ],
+            "total_excess_lateral_travel_m": 0.1308563824785951,
+            "peak_abs_vy_mps": 0.32465116957290074,
+            "minimum_vx_mps": 0.8938347541569868
+          },
+          "tvfr": {
+            "enabled": true,
+            "transition_duration_seconds": 10.0,
+            "evidence": "archived stage configuration; missing/zero means instantaneous switching"
+          },
+          "stage_parameters": {
+            "type": 1,
+            "all_wmr_past_x": 100.0,
+            "transition_duration": 10.0,
+            "formation_preview_time": 3.0,
+            "formation_preview_taper": 1.0,
+            "anchor_to_route": true,
+            "shape_velocity_weight": 2500.0,
+            "shape_weight": 5000.0
+          },
+          "switch_time": 1789391046.5223546
+        }
+      ]
+    }
+  ],
+  "shared_display_mesh": {
+    "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_210201_219110/mesh_geometry.npz",
+    "sha256": "c5852d2f634fa7f9933bf89596a57388a5e3f50eb81e48cfa77f5862a0cde97a"
+  },
+  "video": {
+    "frames": 900,
+    "decoded_frames": 900,
+    "fps": 25,
+    "duration_seconds": 36.0,
+    "width": 1920,
+    "height": 642,
+    "scan_type": "Progressive",
+    "codec": "H.264",
+    "pixel_format": "yuv420p",
+    "faststart": true
+  },
+  "video_sha256": "06f9e8a4d84dc3a4a4abeac0b4cd0f344799e1226bdefa6d8a45c5e61bc8f2b7",
+  "code_sha256": {
+    "render_tvfr_comparison.py": "3fc5bf06516a6079766c606f50be519327ac0ffac987d8f739b123e984108fa8",
+    "plot_recorded_figures.py": "f7a35e9983288eb77f67f7c270022b8d839531bffd4679ffb40d84691c3ae6ab",
+    "render_recorded_video.py": "bfe58e2daf80774b7d83627fefea8084f70ad4453ab3234caec19449211a1f71"
+  }
+}
