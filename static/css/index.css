@@ -572,6 +572,31 @@ hit.teaser-video-item {
   margin-bottom: 0.5rem;
 }
 
+.contrib-metric-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.contrib-metric-pair figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.contrib-metric-pair figcaption {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+@media screen and (max-width: 600px) {
+  .contrib-metric-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Active / expanded state for cards and contrib items */
 .motiv-card.is-active {
   box-shadow: var(--shadow-md);

@@ -112,7 +112,11 @@ def main():
                 assert 'Illustrative comparison' not in section_text
                 assert 'Source records and measurements' not in section_text
                 manifest = json.loads((args.site/'static/data/tvfr_comparison_manifest.json').read_text())
+                assert all(r['passed'] is True for r in manifest['runtime_validation'].values())
                 for transition in manifest['transitions']:
+                    assert transition['environment']['exact_match'] is True
+                    assert transition['environment']['cylinder_count'] == 165
+                    assert transition['environment']['box_count'] == 4
                     left, right = transition['methods']
                     assert left['label'] == 'Without TVFR' and left['tvfr']['enabled'] is False
                     assert left['tvfr']['transition_duration_seconds'] == 0
@@ -132,10 +136,13 @@ def main():
                     const second=document.getElementById('metric-tvfr-transients').getBoundingClientRect();
                     return second.top >= first.bottom && first.height > 0 && second.height > 0;
                 }""")
-                # The original result tabs must still work after the JS adjustment.
-                page.locator('[data-metric="transition-lateral"]').click()
-                assert page.locator('#metric-transition-lateral').is_visible()
+                # The paired results and WMR index must remain independently selectable.
+                page.locator('[data-metric="transition-wmr-index"]').click()
+                assert page.locator('#metric-transition-wmr-index').is_visible()
+                assert not page.locator('#metric-transition-formation-error').is_visible()
                 page.locator('[data-metric="transition-formation-error"]').click()
+                assert not page.locator('#metric-transition-wmr-index').is_visible()
+                assert page.locator('#metric-transition-formation-error img:visible').count() == 2
                 page.locator('#tvfr-comparison-video').scroll_into_view_if_needed()
                 metadata = page.evaluate("""async () => {
                     const v=document.getElementById('tvfr-comparison-video');

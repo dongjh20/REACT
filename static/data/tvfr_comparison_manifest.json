@@ -1,18 +1,31 @@
 {
   "completed": true,
-  "description": "The historical run uses instantaneous formation switching (TVFR disabled); the current run enables TVFR. These are historical system versions, not a controlled single-factor ablation: corridor positions, gating, preview and other cost settings also differ. Original records are not modified.",
+  "description": "The historical method uses instantaneous formation switching (TVFR disabled); the comparison method uses TVFR in the exact same environment. Obstacle geometry, route, initial states, goal and trigger positions are checked. Trigger-rule equality and switch-state differences are reported separately. Other method settings (acceleration, preview and costs) still differ, so this is not a single-factor ablation. Original records are not modified.",
   "sources": {
-    "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_145854_166506": {
-      "config.json": "d9c4b574237fda85587683e894b13526613348c090b975dfe5cbf19414000da2",
-      "geometry.json": "35ec23825ccb4eb4ce0872dbefeefff0efb561b1b58b8e65c1db616eeed716f1",
-      "events.json": "10d8ef9009d3d1dadcaad49b80503ab4f220fdb6be77d52006fd44cf08ba9e03",
-      "odometry.npz": "be54d4f2b7f1cf8ae9b50a1cbded6023ebba8046cf3e319db87dc357c554d2a7"
+    "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260916_181033_397685": {
+      "config.json": "ccb011fe86b977f45eeddc0f6e2daa1c83f271c4b40c9827a3519bdf8247f8f7",
+      "geometry.json": "7fb86822d280c082237ecb0605e0518613b63725f8f2281110e4a3983c60af1f",
+      "events.json": "7c44cfc23c314421dc7813a8499e9ca557024026d95efd12452e1a40db976736",
+      "odometry.npz": "9df380c26324c2cd63cce8f4c213d44f34d9cab14f50b3d6b401978b2e4eda1b"
     },
     "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_210201_219110": {
       "config.json": "8779c787bfb1566a0a0e7e3d35b1a35cbf0dbf1e2b748ea21278e228a71dc425",
       "geometry.json": "7fb86822d280c082237ecb0605e0518613b63725f8f2281110e4a3983c60af1f",
       "events.json": "174094fa5c206319b3e415d26952ce49c200b1377cb6c23f06a8f7ea42254413",
       "odometry.npz": "978928bb562dd9d34fd26128785b01b1882dbcd6b0ae3c202ef43677d5530880"
+    }
+  },
+  "runtime_validation": {
+    "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260916_181033_397685": {
+      "passed": true,
+      "report_sha256": "ac1c90f5f519a092bfaa9733dafaf1c04d665d5ab6f7739a2af4feaa06d70706",
+      "original_recorder_passed": false,
+      "validation_kind": "independent_complete_runtime_checks",
+      "supplemental_validation_sha256": "156a2fc403dcc312b8d9a08e9fd3ccdd3689ed5d4ba4fbf888d4edfb41d6a7c1"
+    },
+    "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_210201_219110": {
+      "passed": true,
+      "report_sha256": "cca369d2186391e681f655f86674ffd12d27910296da200c7d072bbdf55abde0"
     }
   },
   "style": {
@@ -61,6 +74,11 @@
         0.98
       ]
     ],
+    "transient_top_headroom": [
+      0.3,
+      0.0,
+      0.45
+    ],
     "dpi": 180,
     "trajectory_linewidth": 1.6,
     "velocity_linewidth": 1.1,
@@ -80,83 +98,288 @@
         -2.0,
         16.0
       ],
+      "environment": {
+        "exact_match": true,
+        "geometry_sha256": "3ae65d4fb82ba2d52d667b4096100f76db6654a1a636c7f3ee604012afd56fb5",
+        "cylinder_count": 165,
+        "box_count": 4,
+        "configuration_fields": [
+          "initial_states",
+          "map",
+          "local_sensing",
+          "experiment.route",
+          "experiment.forest",
+          "experiment.corridors",
+          "global_goal",
+          "formation_switch.trigger_x"
+        ],
+        "coordinate_transform": "none; both use unmodified recorded world coordinates"
+      },
+      "triggers": {
+        "exact_rule_match": true,
+        "rules": [
+          {
+            "reference_vehicle": 0,
+            "timer_period": 0.01,
+            "trigger_x": [
+              -16.0,
+              25.0,
+              63.0,
+              103.0
+            ],
+            "second_require_settled": false,
+            "second_settle_rms": 0.2,
+            "second_settle_duration": 1.0,
+            "odom_max_age": 0.2,
+            "all_wmr_past_x": [
+              -16.0,
+              null,
+              null,
+              100.0
+            ]
+          },
+          {
+            "reference_vehicle": 0,
+            "timer_period": 0.01,
+            "trigger_x": [
+              -16.0,
+              25.0,
+              63.0,
+              103.0
+            ],
+            "second_require_settled": false,
+            "second_settle_rms": 0.2,
+            "second_settle_duration": 1.0,
+            "odom_max_age": 0.2,
+            "all_wmr_past_x": [
+              -16.0,
+              null,
+              null,
+              100.0
+            ]
+          }
+        ],
+        "states_at_switch": [
+          {
+            "mean_position_m": [
+              -12.283888304975823,
+              4.268549843708772
+            ],
+            "minimum_x_m": -15.70205850980376,
+            "positions_m": [
+              [
+                -12.23397423905118,
+                4.165126107862012
+              ],
+              [
+                -10.215624300164484,
+                2.9206573953705743
+              ],
+              [
+                -13.55506063582416,
+                2.267873990926534
+              ],
+              [
+                -15.70205850980376,
+                3.938839703650016
+              ],
+              [
+                -14.146691747906761,
+                5.509474321983812
+              ],
+              [
+                -11.166547015474043,
+                6.0668948421832605
+              ],
+              [
+                -8.967261686606392,
+                5.010982543985199
+              ]
+            ],
+            "velocities_mps": [
+              [
+                1.1891174760790806,
+                0.07285767457719075
+              ],
+              [
+                1.1926931852551763,
+                0.07904172055965122
+              ],
+              [
+                1.205089835310663,
+                0.020917506136730532
+              ],
+              [
+                1.196623672110284,
+                -0.2643935307695381
+              ],
+              [
+                1.1527393110657866,
+                0.05185262627648555
+              ],
+              [
+                1.2153105415104024,
+                0.1710365992983323
+              ],
+              [
+                1.207333618091262,
+                0.07693962626989072
+              ]
+            ]
+          },
+          {
+            "mean_position_m": [
+              -12.057844491534585,
+              3.979343286685281
+            ],
+            "minimum_x_m": -15.693425218098412,
+            "positions_m": [
+              [
+                -12.03884031829728,
+                3.987919962769418
+              ],
+              [
+                -10.290329487728064,
+                2.1141768638035074
+              ],
+              [
+                -13.852056269990651,
+                2.3133585901588
+              ],
+              [
+                -15.693425218098412,
+                4.241858865593161
+              ],
+              [
+                -13.75950470873181,
+                5.783112461774125
+              ],
+              [
+                -10.154474068625131,
+                5.678841904515211
+              ],
+              [
+                -8.616281369270734,
+                3.736134358182742
+              ]
+            ],
+            "velocities_mps": [
+              [
+                1.2036878593596776,
+                0.11328671325445305
+              ],
+              [
+                1.2005238697662277,
+                0.12867453078489346
+              ],
+              [
+                1.208261932289797,
+                0.0939085816343546
+              ],
+              [
+                1.2182214751597784,
+                -0.07355237657527025
+              ],
+              [
+                1.1999918223738077,
+                0.15999175040632763
+              ],
+              [
+                1.204140412021445,
+                0.14002317877535603
+              ],
+              [
+                1.2095118419045532,
+                0.15385032092113188
+              ]
+            ]
+          }
+        ],
+        "mean_position_difference_m": [
+          0.22604381344123858,
+          -0.2892065570234914
+        ],
+        "alignment": "each run actual switch receipt is t=0; no spatial or per-WMR shifts"
+      },
       "methods": [
         {
           "label": "Without TVFR",
-          "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_145854_166506",
+          "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260916_181033_397685",
           "metrics": {
             "per_wmr": [
               {
                 "wmr": 0,
-                "excess_lateral_travel_m": 1.467316476637202,
-                "peak_abs_vy_mps": 1.1414595850084785,
-                "minimum_vx_mps": 0.5827698770052856,
-                "peak_abs_yaw_deg": 62.88380826102775,
+                "excess_lateral_travel_m": 3.157508220899837,
+                "peak_abs_vy_mps": 1.0004245938827327,
+                "minimum_vx_mps": 0.7511657098077079,
+                "peak_abs_yaw_deg": 51.13790218063281,
                 "reverse_distance_m": 0.0
               },
               {
                 "wmr": 1,
-                "excess_lateral_travel_m": 0.6995430190382963,
-                "peak_abs_vy_mps": 0.928525336721224,
-                "minimum_vx_mps": -0.23446003377240382,
-                "peak_abs_yaw_deg": 104.17141787673557,
-                "reverse_distance_m": 0.03819331658515148
+                "excess_lateral_travel_m": 4.245776674092644,
+                "peak_abs_vy_mps": 1.1077352085383736,
+                "minimum_vx_mps": 0.44861905712988387,
+                "peak_abs_yaw_deg": 63.73857489053238,
+                "reverse_distance_m": 0.0
               },
               {
                 "wmr": 2,
-                "excess_lateral_travel_m": 0.9347740576015378,
-                "peak_abs_vy_mps": 1.3227184218095027,
-                "minimum_vx_mps": 0.25987220956576124,
-                "peak_abs_yaw_deg": 78.77976941135083,
+                "excess_lateral_travel_m": 3.7088865906843207,
+                "peak_abs_vy_mps": 1.239007710159795,
+                "minimum_vx_mps": 0.15621179475166197,
+                "peak_abs_yaw_deg": 82.76560686015335,
                 "reverse_distance_m": 0.0
               },
               {
                 "wmr": 3,
-                "excess_lateral_travel_m": 3.0397890757508463,
-                "peak_abs_vy_mps": 1.1202902319727477,
-                "minimum_vx_mps": -0.20271209390185452,
-                "peak_abs_yaw_deg": 101.69754561630677,
-                "reverse_distance_m": 0.07647334508914783
+                "excess_lateral_travel_m": 3.424031819906341,
+                "peak_abs_vy_mps": 1.1384754746844081,
+                "minimum_vx_mps": 0.5018529991183619,
+                "peak_abs_yaw_deg": 56.55181931408966,
+                "reverse_distance_m": 0.0
               },
               {
                 "wmr": 4,
-                "excess_lateral_travel_m": 2.601314885827265,
-                "peak_abs_vy_mps": 0.8451062960589771,
-                "minimum_vx_mps": -0.5764715301158024,
-                "peak_abs_yaw_deg": 148.16432842346177,
-                "reverse_distance_m": 0.21802282369882478
+                "excess_lateral_travel_m": 2.9685535019147213,
+                "peak_abs_vy_mps": 1.0652596148764795,
+                "minimum_vx_mps": 0.2079346026409277,
+                "peak_abs_yaw_deg": 56.80642126723591,
+                "reverse_distance_m": 0.0
               },
               {
                 "wmr": 5,
-                "excess_lateral_travel_m": 2.6594394720831227,
-                "peak_abs_vy_mps": 0.9925252550167463,
-                "minimum_vx_mps": 0.9118126859709761,
-                "peak_abs_yaw_deg": 47.40516493983153,
+                "excess_lateral_travel_m": 1.8737190873400813,
+                "peak_abs_vy_mps": 0.8961962709690171,
+                "minimum_vx_mps": 0.9476377635306691,
+                "peak_abs_yaw_deg": 42.26643520402108,
                 "reverse_distance_m": 0.0
               },
               {
                 "wmr": 6,
-                "excess_lateral_travel_m": 2.57381866792353,
-                "peak_abs_vy_mps": 0.9277310011243299,
-                "minimum_vx_mps": 0.9153741775772964,
-                "peak_abs_yaw_deg": 45.383976113212526,
+                "excess_lateral_travel_m": 2.2253567521295476,
+                "peak_abs_vy_mps": 1.1562219171250547,
+                "minimum_vx_mps": 0.4390510984870617,
+                "peak_abs_yaw_deg": 69.15833440815449,
                 "reverse_distance_m": 0.0
               }
             ],
-            "total_excess_lateral_travel_m": 13.975995654861798,
-            "peak_abs_vy_mps": 1.3227184218095027,
-            "minimum_vx_mps": -0.5764715301158024
+            "total_excess_lateral_travel_m": 21.60383264696749,
+            "peak_abs_vy_mps": 1.239007710159795,
+            "minimum_vx_mps": 0.15621179475166197
           },
           "tvfr": {
             "enabled": false,
             "transition_duration_seconds": 0.0,
+            "lateral_transition_duration_seconds": 0.0,
             "evidence": "archived stage configuration; missing/zero means instantaneous switching"
           },
           "stage_parameters": {
             "type": 2,
+            "all_wmr_past_x": -16.0,
             "shape_weight": 5000.0
           },
-          "switch_time": 1789369157.6113155
+          "switch_time": 1789553460.0003376
         },
         {
           "label": "With TVFR",
@@ -227,6 +450,7 @@
           "tvfr": {
             "enabled": true,
             "transition_duration_seconds": 12.0,
+            "lateral_transition_duration_seconds": 12.0,
             "evidence": "archived stage configuration; missing/zero means instantaneous switching"
           },
           "stage_parameters": {
@@ -253,84 +477,288 @@
         -2.0,
         16.0
       ],
+      "environment": {
+        "exact_match": true,
+        "geometry_sha256": "3ae65d4fb82ba2d52d667b4096100f76db6654a1a636c7f3ee604012afd56fb5",
+        "cylinder_count": 165,
+        "box_count": 4,
+        "configuration_fields": [
+          "initial_states",
+          "map",
+          "local_sensing",
+          "experiment.route",
+          "experiment.forest",
+          "experiment.corridors",
+          "global_goal",
+          "formation_switch.trigger_x"
+        ],
+        "coordinate_transform": "none; both use unmodified recorded world coordinates"
+      },
+      "triggers": {
+        "exact_rule_match": true,
+        "rules": [
+          {
+            "reference_vehicle": 0,
+            "timer_period": 0.01,
+            "trigger_x": [
+              -16.0,
+              25.0,
+              63.0,
+              103.0
+            ],
+            "second_require_settled": false,
+            "second_settle_rms": 0.2,
+            "second_settle_duration": 1.0,
+            "odom_max_age": 0.2,
+            "all_wmr_past_x": [
+              -16.0,
+              null,
+              null,
+              100.0
+            ]
+          },
+          {
+            "reference_vehicle": 0,
+            "timer_period": 0.01,
+            "trigger_x": [
+              -16.0,
+              25.0,
+              63.0,
+              103.0
+            ],
+            "second_require_settled": false,
+            "second_settle_rms": 0.2,
+            "second_settle_duration": 1.0,
+            "odom_max_age": 0.2,
+            "all_wmr_past_x": [
+              -16.0,
+              null,
+              null,
+              100.0
+            ]
+          }
+        ],
+        "states_at_switch": [
+          {
+            "mean_position_m": [
+              105.36420185418582,
+              -4.000001720710324
+            ],
+            "minimum_x_m": 101.24820894073719,
+            "positions_m": [
+              [
+                105.3645852291345,
+                -3.999998960023832
+              ],
+              [
+                108.09082867639717,
+                -4.000000150178223
+              ],
+              [
+                103.97952405053827,
+                -4.000008432686232
+              ],
+              [
+                101.24820894073719,
+                -4.0000019771271385
+              ],
+              [
+                102.63687453714725,
+                -4.000002795450084
+              ],
+              [
+                106.74058756929855,
+                -3.999999060813964
+              ],
+              [
+                109.48880397604783,
+                -4.000000668692793
+              ]
+            ],
+            "velocities_mps": [
+              [
+                1.2135025579974181,
+                1.0520406295062025e-06
+              ],
+              [
+                1.2141829720350024,
+                6.589368790968251e-06
+              ],
+              [
+                1.2145532756952122,
+                2.0306738535944353e-05
+              ],
+              [
+                1.2119583799712923,
+                1.945565982123794e-06
+              ],
+              [
+                1.212147220343511,
+                1.9224048949683024e-06
+              ],
+              [
+                1.2127599590664049,
+                5.470253768957986e-06
+              ],
+              [
+                1.2119343499337976,
+                2.199509188353025e-06
+              ]
+            ]
+          },
+          {
+            "mean_position_m": [
+              105.23135865105306,
+              -4.000001222694574
+            ],
+            "minimum_x_m": 101.3195537379654,
+            "positions_m": [
+              [
+                105.2279216523336,
+                -4.000001782182478
+              ],
+              [
+                107.826724783759,
+                -4.0000020199130555
+              ],
+              [
+                103.92245028902117,
+                -4.0000017598827045
+              ],
+              [
+                101.3195537379654,
+                -4.000000910932225
+              ],
+              [
+                102.63279287792511,
+                -4.000002146877635
+              ],
+              [
+                106.54148995376296,
+                -3.9999998098121106
+              ],
+              [
+                109.14857726260412,
+                -4.000000129261812
+              ]
+            ],
+            "velocities_mps": [
+              [
+                1.2140156196265208,
+                9.030731122155121e-07
+              ],
+              [
+                1.2140698549592375,
+                -1.9062044308071426e-06
+              ],
+              [
+                1.2137942472637369,
+                4.75784685840674e-06
+              ],
+              [
+                1.2134745823259727,
+                8.987352523404041e-07
+              ],
+              [
+                1.2130611680485637,
+                1.2935476792804901e-06
+              ],
+              [
+                1.2123854240798404,
+                6.659850781675536e-07
+              ],
+              [
+                1.2123684584623202,
+                -4.83404582003378e-07
+              ]
+            ]
+          }
+        ],
+        "mean_position_difference_m": [
+          -0.1328432031327651,
+          4.980157495282356e-07
+        ],
+        "alignment": "each run actual switch receipt is t=0; no spatial or per-WMR shifts"
+      },
       "methods": [
         {
           "label": "Without TVFR",
-          "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260914_145854_166506",
+          "source": "/home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2/result/ICRA-video/20260916_181033_397685",
           "metrics": {
             "per_wmr": [
               {
                 "wmr": 0,
-                "excess_lateral_travel_m": 0.7681494139861798,
-                "peak_abs_vy_mps": 0.6345031399736609,
-                "minimum_vx_mps": 0.9165989230522285,
-                "peak_abs_yaw_deg": 29.218336214125507,
+                "excess_lateral_travel_m": 1.1272497734534923,
+                "peak_abs_vy_mps": 0.6657858554800985,
+                "minimum_vx_mps": 0.9568621686660169,
+                "peak_abs_yaw_deg": 30.184542893520707,
                 "reverse_distance_m": 0.0
               },
               {
                 "wmr": 1,
-                "excess_lateral_travel_m": 0.4445223198285291,
-                "peak_abs_vy_mps": 0.9026862049695666,
-                "minimum_vx_mps": 0.3276667862853576,
-                "peak_abs_yaw_deg": 70.04956944654248,
-                "reverse_distance_m": 0.0
+                "excess_lateral_travel_m": 0.7516666864275416,
+                "peak_abs_vy_mps": 1.0967537832259235,
+                "minimum_vx_mps": -0.0378864311611564,
+                "peak_abs_yaw_deg": 92.30936661390837,
+                "reverse_distance_m": 0.003966279985085654
               },
               {
                 "wmr": 2,
-                "excess_lateral_travel_m": 0.9180600021173477,
-                "peak_abs_vy_mps": 1.1426791257534448,
-                "minimum_vx_mps": -0.3902341974268705,
-                "peak_abs_yaw_deg": 108.85546381906458,
-                "reverse_distance_m": 0.06720605786796155
+                "excess_lateral_travel_m": 0.9463988921654316,
+                "peak_abs_vy_mps": 0.9865481827176148,
+                "minimum_vx_mps": 0.7985724960379497,
+                "peak_abs_yaw_deg": 50.47039083146035,
+                "reverse_distance_m": 0.0
               },
               {
                 "wmr": 3,
-                "excess_lateral_travel_m": 0.7617128676565752,
-                "peak_abs_vy_mps": 0.39558107899347605,
-                "minimum_vx_mps": 0.9781082405986599,
-                "peak_abs_yaw_deg": 19.838906060981024,
+                "excess_lateral_travel_m": 1.659877025003082,
+                "peak_abs_vy_mps": 0.6389370939162098,
+                "minimum_vx_mps": 1.044272660281756,
+                "peak_abs_yaw_deg": 28.635888381742287,
                 "reverse_distance_m": 0.0
               },
               {
                 "wmr": 4,
-                "excess_lateral_travel_m": 0.29870751883534474,
-                "peak_abs_vy_mps": 1.1027742870341566,
-                "minimum_vx_mps": 0.653521981343135,
-                "peak_abs_yaw_deg": 59.24341241834646,
+                "excess_lateral_travel_m": 0.6176797896337236,
+                "peak_abs_vy_mps": 0.9415993895139287,
+                "minimum_vx_mps": 0.8237327584594097,
+                "peak_abs_yaw_deg": 48.6469120073657,
                 "reverse_distance_m": 0.0
               },
               {
                 "wmr": 5,
-                "excess_lateral_travel_m": 0.23133524553097118,
-                "peak_abs_vy_mps": 1.15815477515469,
-                "minimum_vx_mps": 0.6479683922120796,
-                "peak_abs_yaw_deg": 60.75575362404011,
+                "excess_lateral_travel_m": 0.5963216325372827,
+                "peak_abs_vy_mps": 1.1487812931264123,
+                "minimum_vx_mps": 0.5129127310251974,
+                "peak_abs_yaw_deg": 65.62091140856013,
                 "reverse_distance_m": 0.0
               },
               {
                 "wmr": 6,
-                "excess_lateral_travel_m": 0.9694867727259346,
-                "peak_abs_vy_mps": 0.532677529258979,
-                "minimum_vx_mps": 0.43109988843379027,
-                "peak_abs_yaw_deg": 34.980439153211755,
+                "excess_lateral_travel_m": 1.9753228984645466,
+                "peak_abs_vy_mps": 1.0157896275383784,
+                "minimum_vx_mps": 0.382677936851425,
+                "peak_abs_yaw_deg": 52.04966846246492,
                 "reverse_distance_m": 0.0
               }
             ],
-            "total_excess_lateral_travel_m": 4.391974140680882,
-            "peak_abs_vy_mps": 1.15815477515469,
-            "minimum_vx_mps": -0.3902341974268705
+            "total_excess_lateral_travel_m": 7.6745166976851005,
+            "peak_abs_vy_mps": 1.1487812931264123,
+            "minimum_vx_mps": -0.0378864311611564
           },
           "tvfr": {
             "enabled": false,
             "transition_duration_seconds": 0.0,
+            "lateral_transition_duration_seconds": 0.0,
             "evidence": "archived stage configuration; missing/zero means instantaneous switching"
           },
           "stage_parameters": {
             "type": 1,
-            "all_wmr_past_x": 95.0,
+            "all_wmr_past_x": 100.0,
             "shape_weight": 5000.0
           },
-          "switch_time": 1789369257.8853846
+          "switch_time": 1789553561.6590858
         },
         {
           "label": "With TVFR",
@@ -401,6 +829,7 @@
           "tvfr": {
             "enabled": true,
             "transition_duration_seconds": 10.0,
+            "lateral_transition_duration_seconds": 10.0,
             "evidence": "archived stage configuration; missing/zero means instantaneous switching"
           },
           "stage_parameters": {
@@ -434,10 +863,10 @@
     "pixel_format": "yuv420p",
     "faststart": true
   },
-  "video_sha256": "06f9e8a4d84dc3a4a4abeac0b4cd0f344799e1226bdefa6d8a45c5e61bc8f2b7",
+  "video_sha256": "0eeae5d76d623e18644ad8280bc6113ec5560a5f673bb58b6a2d23f717e97d6d",
   "code_sha256": {
-    "render_tvfr_comparison.py": "3fc5bf06516a6079766c606f50be519327ac0ffac987d8f739b123e984108fa8",
+    "render_tvfr_comparison.py": "109eec54adc603f64e0e1f29b7c5fece305f39c6eea5ad463c4f2fae84ccf8e7",
     "plot_recorded_figures.py": "f7a35e9983288eb77f67f7c270022b8d839531bffd4679ffb40d84691c3ae6ab",
-    "render_recorded_video.py": "bfe58e2daf80774b7d83627fefea8084f70ad4453ab3234caec19449211a1f71"
+    "render_recorded_video.py": "25b375487bb72b4fed872816c483ded9bf84be31cfe6d869ac710c2b8c496a66"
   }
 }

@@ -6,7 +6,7 @@
 
 ```bash
 cd /home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2
-python3 tools/icra/render_tvfr_comparison.py \
+python3 tools/icra/render_tvfr_comparison.py --require-matched-triggers \
   --website /mnt/d/RUANJIAN/website/REACT
 ```
 
@@ -21,7 +21,7 @@ python -m pip install numpy matplotlib opencv-python Pillow imageio-ffmpeg
 本次验证使用的临时依赖位于 `/tmp/react-web-deps`，当前机器也可以直接：
 
 ```bash
-PYTHONPATH=/tmp/react-web-deps python3 tools/icra/render_tvfr_comparison.py \
+PYTHONPATH=/tmp/react-web-deps python3 tools/icra/render_tvfr_comparison.py --require-matched-triggers \
   --website /mnt/d/RUANJIAN/website/REACT
 ```
 
@@ -40,6 +40,7 @@ PYTHONPATH=/tmp/react-web-deps python3 tools/icra/render_tvfr_comparison.py \
 - `transient_legend_locations` / `transient_legend_anchors`：三行图例的位置和轴内坐标锚点。
   当前第二行采用 `center right`、`(0.98, 0.28)`，第三行采用 `upper left`、`(0.02, 0.98)`。
 - `transient_legend_font_size`：三行图例统一字体大小。
+- `transient_top_headroom`：各行共享 y 范围上方预留空间，避免图例覆盖曲线或柱顶。
 - `before_color` / `current_color`：运动曲线与柱状图的旧/新版本配色。
 - `trajectory_linewidth` / `velocity_linewidth`：曲线宽度。
 - `trail_seconds`：视频中保留的已执行轨迹时长。
@@ -79,17 +80,54 @@ python3 tools/icra/render_tvfr_comparison.py --output /tmp/tvfr-preview
 
 ## 历史记录与解释边界
 
-Without TVFR：3→2 和 1→3 均来自 `20260914_145854_166506`。
-这轮尚未启用平滑时变参考，阶段配置未设置 `transition_duration`，沿用瞬时切换语义。
-With TVFR：两段均来自 `20260914_210201_219110`，参考过渡分别为 12 s 和 10 s。
+Without TVFR：两段均来自 `20260916_181033_397685`。
+通过原操作记录恢复 `20260914_145854_166506` 对应的旧源码，仅修改环境和触发规则，
+独立 Release 编译后真实复跑；无 TVFR，保留旧算法和 max_acc=8。
+With TVFR：严格固定为用户指定的原始归档 `20260914_210201_219110`，没有重新跑或改动它。
+3→2 各轴 12 s；1→3 各轴 10 s。之前的分轴试验仍保留，不用于当前右侧。
+详细源码恢复、允许的两组变更、构建证据及历轮指标见
+`result/ICRA-video/comparisons/historical_replay_210201/README.md` 和 `rounds.md`。
 
 脚本在导出前检查 TVFR 配置，左侧必须省略/为零、右侧必须大于零；有实际参数回读时一并交叉核对。
 误选此前已启用 TVFR 的运行（例如 `20260914_171816_922224`）会直接报错，不再只改标签。
 
-两轮还存在走廊位置/过渡空间、触发条件、加速度和其他优化参数差异，完整配置快照和哈希保留在清单中。
-图中保留真实世界坐标，每侧使用各自归档障碍地图，不平移或修改测量数据。
+两轮的 165 个圆柱障碍和 4 块墙体逐项完全一致；路线、初态、目标、触发坐标及感知配置一致。
+脚本强制验证这些条件；`--require-matched-triggers` 进一步核验全部触发门槛相同。
+两轮仍存在加速度和其他算法差异，完整配置快照和哈希保留在清单中。
+清单同时保存切换瞬间的真实位置差；不声称相同触发规则必然得到完全相同的动态状态。
+图中保留真实世界坐标，不平移或修改测量数据；没有只挪动画面中的障碍物。
 标签准确表示 TVFR 的开关状态，但这仍不是只有 TVFR 一个变量改变的受控消融。
 网页按要求移除了原来的说明段落及 Source records and measurements 链接。
+
+## 上一轮方案：恢复旧环境并真实复跑（非当前网页来源）
+
+正常 `icra_s_curve.yaml` 保持不变，使用专门生成的对比配置：
+
+```bash
+cd /home/focus/ros2_ws/src/Multi-Lane-Vehicle-Formation-ROS2
+python3 tools/icra/prepare_matched_environment.py --lateral-32-seconds 10 \
+  --output result/ICRA-video/comparisons/matched_environment_xy12_10
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+ROS_DOMAIN_ID=184 ROS_LOCALHOST_ONLY=1 \
+python3 src/planner/plan_manage/test/run_icra_experiment.py \
+  --config result/ICRA-video/comparisons/matched_environment_xy12_10/latest_method_original_environment.yaml
+```
+
+输出为新的时间戳记录目录。确认其 `report.json` 的 `passed` 为 `true` 后，把目录传给
+`render_tvfr_comparison.py --current <新记录目录>`，即可重新生成同环境对比。
+独立全程图可用 `python3 tools/icra/plot_recorded_figures.py <新记录目录>` 生成。
+运行新配置前需编译 `swarm_graph`、`traj_opt` 和 `ego_planner`；分轴参数不影响省略它的旧 YAML。
+生成器拒绝失败运行。唯一的补充验收路径是历史记录器漏收启动参数服务响应时，
+`collect_replay_parameters.py` 在同一次运行中独立收齐 15 个节点的真实参数，
+再由 `verify_historical_replay.py` 重新核对全部原有通过条件；原 `report.json` 不修改。
+缺参数、参数不符、碰撞、任务未完成、分配失败或非正常退出都会拒绝，不能只凭曲线好看发布。
+当前左侧正是该情况：原记录器漏收 WMR 1 的点云参数，补充证据完整，独立验收通过。
+
+准备脚本恢复旧路线、两段走廊、第二片森林、终点与下游触发坐标；保留最新 TVFR、
+预瞄、代价、加速度参数和第一阶段等待所有 WMR 离开森林的条件。
+`environment_preflight.json` 保存逐项改动、几何核验、代码版本和规划器二进制哈希。
+原先不匹配环境的网页产物保存在 `comparisons/tvfr_unmatched_environment_20260916/`，不作为当前结果。
 
 横向多走距离在切换后 0～16 s 计算：y 坐标总变差减去首尾净位移的绝对值。
 该量不把正常的单调横向换位全部当作抖动，也不替代原编队误差定义。

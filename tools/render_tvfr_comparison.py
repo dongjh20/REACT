@@ -27,8 +27,8 @@ import render_recorded_video as video
 ROOT = Path(__file__).resolve().parents[2]
 RESULTS = ROOT / 'result/ICRA-video'
 DEFAULTS = {
-    'before_32': '20260914_145854_166506',
-    'before_13': '20260914_145854_166506',
+    'before_32': '20260916_181033_397685',
+    'before_13': '20260916_181033_397685',
     'current': '20260914_210201_219110',
 }
 # All presentation/window parameters are grouped here. Time is relative to the
@@ -45,15 +45,18 @@ STYLE = {
     # Anchors use axes fractions; rows are lateral speed, forward speed, travel.
     'transient_legend_locations': ('upper right', 'center right', 'upper left'),
     'transient_legend_anchors': ((.98, .98), (.98, .28), (.02, .98)),
+    'transient_top_headroom': (.30, 0., .45),  # Fraction of the shared row y-range.
     'dpi': 180, 'trajectory_linewidth': 1.6, 'velocity_linewidth': 1.1,
     'trail_seconds': 6., 'trail_width_px': 2,
     'before_color': '#b96f46', 'current_color': '#286b91',
 }
 LABELS = ('Without TVFR', 'With TVFR')
-NOTE = ('The historical run uses instantaneous formation switching (TVFR disabled); '
-        'the current run enables TVFR. These are historical system versions, not '
-        'a controlled single-factor ablation: corridor positions, gating, preview '
-        'and other cost settings also differ. Original records are not modified.')
+NOTE = ('The historical method uses instantaneous formation switching (TVFR disabled); '
+        'the comparison method uses TVFR in the exact same environment. '
+        'Obstacle geometry, route, initial states, goal and trigger positions are checked. '
+        'Trigger-rule equality and switch-state differences are reported separately. '
+        'Other method settings (acceleration, preview and costs) still differ, '
+        'so this is not a single-factor ablation. Original records are not modified.')
 
 
 def digest(path):
@@ -98,9 +101,12 @@ def verify_tvfr_label(clip, enabled):
     """Missing/zero duration retains instantaneous switching in the schema."""
     stage = clip['cfg']['experiment']['stages'][clip['event_index']]
     duration = float(stage.get('transition_duration', 0.))
+    lateral_duration = float(stage.get('lateral_transition_duration', duration))
     if not np.isfinite(duration) or duration < 0 or (duration > 0) != enabled:
         raise ValueError(f'{clip["source"]}: transition_duration={duration} contradicts '
                          f'{LABELS[int(enabled)]}; select a correctly configured run')
+    if not np.isfinite(lateral_duration) or lateral_duration < 0 or (lateral_duration > 0) != enabled:
+        raise ValueError('Lateral transition duration contradicts the TVFR label')
     # Cross-check runtime parameter readback where it was archived. Older runs
     # predate this parameter and do not have a corresponding readback field.
     report = json.loads((clip['source']/'report.json').read_text())
@@ -108,8 +114,76 @@ def verify_tvfr_label(clip, enabled):
         values = params.get('formation_switch/transition_durations')
         if values is not None and not np.isclose(values[clip['event_index']], duration):
             raise ValueError('Runtime TVFR duration does not match config snapshot')
+        lateral_values = params.get('formation_switch/lateral_transition_durations')
+        if lateral_values is not None and not np.isclose(lateral_values[clip['event_index']], lateral_duration):
+            raise ValueError('Runtime lateral TVFR duration does not match config snapshot')
     return dict(enabled=enabled, transition_duration_seconds=duration,
+                lateral_transition_duration_seconds=lateral_duration,
                 evidence='archived stage configuration; missing/zero means instantaneous switching')
+
+
+def verify_matched_environment(pair):
+    """Fail closed: never silently compare maps translated by 5 m again."""
+    left, right = pair
+    if left['geometry'] != right['geometry']:
+        raise ValueError('Comparison environment mismatch: archived obstacle geometry')
+    paths = [('initial_states',), ('map',), ('local_sensing',),
+             ('experiment', 'route'), ('experiment', 'forest'), ('experiment', 'corridors'),
+             ('global_goal',), ('formation_switch', 'trigger_x')]
+    for path in paths:
+        a, b = left['cfg'], right['cfg']
+        for key in path:
+            a, b = a[key], b[key]
+        if a != b:
+            raise ValueError('Comparison environment mismatch: '+'.'.join(path))
+    encoded = json.dumps(left['geometry'], sort_keys=True, separators=(',', ':')).encode()
+    return dict(exact_match=True, geometry_sha256=hashlib.sha256(encoded).hexdigest(),
+                cylinder_count=len(left['geometry']['cylinders']), box_count=len(left['geometry']['boxes']),
+                configuration_fields=['.'.join(path) for path in paths],
+                coordinate_transform='none; both use unmodified recorded world coordinates')
+
+
+def verify_completed_run(source):
+    report = json.loads((Path(source)/'report.json').read_text())
+    if report.get('passed') is not True:
+        # A historical recorder can lose a one-shot startup service response.
+        # Do not alter its report or ignore its failure: independently recheck
+        # every acceptance condition with complete live readback, if available.
+        if (Path(source)/'historical_replay_validation.json').is_file():
+            from verify_historical_replay import validate
+            fresh = validate(source)
+            saved = json.loads((Path(source)/'historical_replay_validation.json').read_text())
+            if fresh != saved:
+                raise ValueError('Supplemental validation evidence changed; refusing stale acceptance')
+            return dict(passed=True, report_sha256=digest(Path(source)/'report.json'),
+                        original_recorder_passed=False, validation_kind='independent_complete_runtime_checks',
+                        supplemental_validation_sha256=digest(Path(source)/'historical_replay_validation.json'))
+        raise ValueError(f'{source}: full runtime validation failed; cannot publish this recording')
+    return dict(passed=True, report_sha256=digest(Path(source)/'report.json'))
+
+
+def trigger_audit(pair, require_match=False):
+    """Equal rules are not a claim that callback times or dynamic states coincide."""
+    configurations = []
+    states = []
+    for clip in pair:
+        cfg = clip['cfg']
+        switch = cfg['formation_switch']
+        configurations.append({**{k: switch[k] for k in (
+            'reference_vehicle', 'timer_period', 'trigger_x', 'second_require_settled',
+            'second_settle_rms', 'second_settle_duration', 'odom_max_age')},
+            'all_wmr_past_x': [s.get('all_wmr_past_x') for s in cfg['experiment']['stages']]})
+        a = load_clip(clip['source'], clip['event_index'], np.array([0.]))['samples'][:, 0]
+        states.append(dict(mean_position_m=a[:, :2].mean(axis=0).tolist(),
+                           minimum_x_m=float(a[:, 0].min()), positions_m=a[:, :2].tolist(),
+                           velocities_mps=a[:, 3:5].tolist()))
+    equal = configurations[0] == configurations[1]
+    if require_match and not equal:
+        raise ValueError('Comparison trigger rules differ')
+    return dict(exact_rule_match=equal, rules=configurations, states_at_switch=states,
+                mean_position_difference_m=(np.array(states[1]['mean_position_m'])-
+                                            np.array(states[0]['mean_position_m'])).tolist(),
+                alignment='each run actual switch receipt is t=0; no spatial or per-WMR shifts')
 
 
 def draw_obstacles(ax, geometry):
@@ -180,7 +254,7 @@ def render_figures(pairs, output):
         lo = min(ax.get_ylim()[0] for ax in axes[row])
         hi = max(ax.get_ylim()[1] for ax in axes[row])
         for ax in axes[row]:
-            ax.set_ylim(lo, hi)
+            ax.set_ylim(lo, hi+(hi-lo)*STYLE['transient_top_headroom'][row])
     handles = [Line2D([], [], color=c, lw=3, label=l) for c, l in zip(colors, LABELS)]
     bar_handles = [Patch(facecolor=c, label=l) for c, l in zip(colors, LABELS)]
     for row in range(3):
@@ -337,11 +411,14 @@ def main():
         parser.add_argument('--'+key.replace('_', '-'), type=Path, default=RESULTS/name)
     parser.add_argument('--output', type=Path, default=RESULTS/'comparisons/tvfr_website')
     parser.add_argument('--figures-only', action='store_true')
+    parser.add_argument('--require-matched-triggers', action='store_true',
+                        help='Reject different all-WMR gates or other switch trigger settings')
     parser.add_argument('--website', type=Path, help='Optionally copy generated media into an existing website (never changes HTML)')
     args = parser.parse_args()
     if args.website and (not (args.website/'index.html').is_file() or args.figures_only):
         parser.error('--website requires an existing index.html and a full render, not --figures-only')
     paths = (args.before_32, args.before_13, args.current)
+    run_validation = {str(p.resolve()): verify_completed_run(p) for p in paths}
     out = args.output.resolve()
     if any(out == p.resolve() or out in p.resolve().parents for p in paths):
         parser.error('Output must not overwrite a recorded input directory or its ancestor')
@@ -354,15 +431,20 @@ def main():
     pairs = [(load_clip(old, index, times), load_clip(args.current, index, times))
              for old, index in ((args.before_32, 0), (args.before_13, 3))]
     for pair in pairs:
+        verify_matched_environment(pair)
+        trigger_audit(pair, args.require_matched_triggers)
         for method, clip in enumerate(pair):
             verify_tvfr_label(clip, enabled=bool(method))
     hashes = {str(p.resolve()): {f: digest(p/f) for f in plots.INPUTS} for p in paths}
-    summary = dict(completed=False, description=NOTE, sources=hashes, style=STYLE, transitions=[],
+    summary = dict(completed=False, description=NOTE, sources=hashes, runtime_validation=run_validation,
+                   style=STYLE, transitions=[],
                    shared_display_mesh=dict(source=str(args.current/'mesh_geometry.npz'),
                                             sha256=digest(args.current/'mesh_geometry.npz')))
     for name, pair in zip(('3_to_2', '1_to_3'), pairs):
         entry = dict(transition=name, measurement_window_seconds=[0, STYLE['post_seconds']],
-                     display_window_seconds=[-STYLE['pre_seconds'], STYLE['post_seconds']], methods=[])
+                     display_window_seconds=[-STYLE['pre_seconds'], STYLE['post_seconds']],
+                     environment=verify_matched_environment(pair),
+                     triggers=trigger_audit(pair, args.require_matched_triggers), methods=[])
         for label, c in zip(LABELS, pair):
             stage = c['cfg']['experiment']['stages'][c['event_index']]
             entry['methods'].append(dict(label=label, source=str(c['source']), metrics=metrics(c),

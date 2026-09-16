@@ -1,11 +1,62 @@
 """Numerical and recorded-input checks for the standalone web comparison."""
 import unittest
+import copy
+import json
+from pathlib import Path
 from unittest.mock import patch
 import numpy as np
 import render_tvfr_comparison as render
 
 
 class ComparisonTests(unittest.TestCase):
+    def test_supplemental_acceptance_does_not_hide_physical_or_parameter_failures(self):
+        from verify_historical_replay import validate
+        source = render.RESULTS/'20260916_181033_397685'
+        self.assertTrue(validate(source)['passed'])
+        self.assertFalse(validate(source)['original_recorder_passed'])
+        original = Path.read_text
+        for file, mutate in (
+            ('report.json', lambda r: r['mesh_footprint'].update(passed=False)),
+            ('report.json', lambda r: r.update(errors=['CBM-TAPF failed'])),
+            ('independent_parameter_readback.json', lambda r: r['parameters'].pop('/drone_1_pcl_render_node')),
+            ('independent_parameter_readback.json', lambda r: r['parameters']['/drone_1_pcl_render_node'].update(sensing_horizon=1.)),
+        ):
+            altered = json.loads(original(source/file))
+            mutate(altered)
+            def read(path, *args, **kwargs):
+                return json.dumps(altered) if path == source/file else original(path,*args,**kwargs)
+            with patch.object(Path, 'read_text', read), self.assertRaises(ValueError):
+                validate(source)
+
+    def test_equal_geometry_does_not_excuse_different_trigger_gates(self):
+        times = np.array([0., 1.])
+        latest = render.load_clip(render.RESULTS/render.DEFAULTS['current'], 0, times)
+        same = copy.deepcopy(latest)
+        audit = render.trigger_audit((same, latest), require_match=True)
+        self.assertTrue(audit['exact_rule_match'])
+        self.assertEqual(audit['mean_position_difference_m'], [0., 0.])
+        same['cfg']['experiment']['stages'][0].pop('all_wmr_past_x', None)
+        with self.assertRaisesRegex(ValueError, 'trigger rules differ'):
+            render.trigger_audit((same, latest), require_match=True)
+
+    def test_failed_runtime_recording_cannot_be_published(self):
+        self.assertTrue(render.verify_completed_run(render.RESULTS/render.DEFAULTS['current'])['passed'])
+        with self.assertRaisesRegex(ValueError, 'full runtime validation failed'):
+            render.verify_completed_run(render.RESULTS/'20260916_170717_980168')
+
+    def test_matching_environment_and_rejection_of_shifted_archive(self):
+        times = np.array([0., 1.])
+        old = render.load_clip(render.RESULTS/render.DEFAULTS['before_32'], 0, times)
+        latest = render.load_clip(render.RESULTS/render.DEFAULTS['current'], 0, times)
+        self.assertTrue(render.verify_matched_environment((old, latest))['exact_match'])
+        shifted = render.load_clip(render.RESULTS/'20260916_163215_772733', 0, times)
+        with self.assertRaisesRegex(ValueError, 'obstacle geometry'):
+            render.verify_matched_environment((old, shifted))
+        changed = copy.deepcopy(latest)
+        changed['cfg']['experiment']['route'][-1][0] += .01
+        with self.assertRaisesRegex(ValueError, 'experiment.route'):
+            render.verify_matched_environment((old, changed))
+
     def test_six_legends_do_not_cover_recorded_curves_or_bars(self):
         times = np.linspace(-2., 16., 901)
         pairs = [(render.load_clip(render.RESULTS/render.DEFAULTS['before_32'], i, times),

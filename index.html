@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=results-open-20260911">
+  <link rel="stylesheet" href="static/css/index.css?v=paired-metrics-20260916">
   <link rel="stylesheet" href="static/css/tvfr.css?v=stacked-3">
 
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -62,7 +62,7 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">Demonstration for CFOO</h1>
               <h2 class="subtitle has-text-centered"> <!-- Adjusted font size and alignment -->
-                CFOO: a Conflict-Free Online Orchestration framework for continuous formation navigation of WMRs.
+                CFOO: a Conflict-Free Online Orchestration framework for continuous formation navigation <br> of wheeled mobile robots (WMRs).
               </h2>
             <div class="is-size-5 publication-authors">
 
@@ -115,6 +115,9 @@
         <source src="static/videos/formation_navigation_four_panels.mp4"
         type="video/mp4">
       </video>
+      <h2 class="subtitle has-text-centered">
+       These results demonstrate CFOO's effectiveness in enabling continuous formation navigation of WMRs in varying environments. Moreover, the TVFR mechanism smooths these formation transitions without large trajectory oscillations.
+      </h2>
     </div>
   </div>
 </section>
@@ -143,15 +146,20 @@
         </div>
         <div class="motiv-inline-video">
           <div class="contrib-metric-tabs">
-            <button class="contrib-metric-tab is-active" data-metric="transition-formation-error">Formation Error Metric</button>
-            <button class="contrib-metric-tab" data-metric="transition-lateral">Lateral Position</button>
+            <button class="contrib-metric-tab is-active" data-metric="transition-formation-error">Formation Error &amp; Lateral Position</button>
             <button class="contrib-metric-tab" data-metric="transition-wmr-index">WMR-Index</button>
           </div>
           <div class="contrib-metric-panel" id="metric-transition-formation-error">
-            <img src="static/images/transition-metric.jpg" alt="Formation Error Metric" style="width:50%; display:block; margin:0 auto;">
-          </div>
-          <div class="contrib-metric-panel" id="metric-transition-lateral" style="display:none;">
-            <img src="static/images/transition-y.jpg" alt="Lateral Position" style="width:50%; display:block; margin:0 auto;">
+            <div class="contrib-metric-pair">
+              <figure>
+                <figcaption>Formation Error Metric</figcaption>
+                <img src="static/images/transition-metric.jpg" alt="Formation Error Metric">
+              </figure>
+              <figure>
+                <figcaption>Lateral Position</figcaption>
+                <img src="static/images/transition-y.jpg" alt="Lateral Position">
+              </figure>
+            </div>
           </div>
           <div class="contrib-metric-panel" id="metric-transition-wmr-index" style="display:none;">
             <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
@@ -177,13 +185,14 @@
       TVFR gradually evolves the desired formation instead of imposing an abrupt target change.
       The event-aligned simulation replays below compare <strong>Without TVFR</strong>
       (instantaneous reference switching) and <strong>With TVFR</strong>
-      (smoothly evolving references) during the 3-to-2 and 1-to-3 formation transitions.
+      (smoothly evolving references) during the 3-to-2 and 1-to-3 formation transitions,
+      using identical obstacle geometry, reference route, initial conditions, and switching trigger rules.
     </p>
     <video id="tvfr-comparison-video" class="tvfr-video" controls muted playsinline preload="metadata"
-           poster="static/images/tvfr_comparison_poster.png?v=tvfr-off-on-2"
+           poster="static/images/tvfr_comparison_poster.png?v=historical-replay-20260916"
            aria-label="Without TVFR and With TVFR formation transitions shown side by side">
-      <source src="static/videos/tvfr_comparison.mp4?v=tvfr-off-on-2" type="video/mp4">
-      Your browser does not support embedded video. <a href="static/videos/tvfr_comparison.mp4?v=tvfr-off-on-2">Download the comparison video.</a>
+      <source src="static/videos/tvfr_comparison.mp4?v=historical-replay-20260916" type="video/mp4">
+      Your browser does not support embedded video. <a href="static/videos/tvfr_comparison.mp4?v=historical-replay-20260916">Download the comparison video.</a>
     </video>
     <p class="tvfr-caption">Left: <strong>Without TVFR</strong>. Right: <strong>With TVFR</strong>.
       Both views use 1× playback and identical spatial scales. The 3→2 comparison is followed by 1→3.</p>
@@ -195,14 +204,14 @@
             <div class="contrib-content">
               <p class="contrib-heading">Transition Trajectories &amp; Motion Smoothness</p>
               <p>Recorded motion of all seven WMRs, aligned at the switching event (\(t=0\)).
-                No trajectory smoothing is applied to the recorded data.</p>
+              </p>
             </div>
           </div>
           <div class="motiv-inline-video">
             <div class="contrib-metric-panel tvfr-result" id="metric-tvfr-trajectories">
               <h3 class="tvfr-result-title">Transition Trajectories</h3>
-              <a href="static/images/tvfr_trajectory_comparison.png?v=tvfr-off-on-2" target="_blank" rel="noopener">
-                <img src="static/images/tvfr_trajectory_comparison.png?v=tvfr-off-on-2" loading="lazy"
+              <a href="static/images/tvfr_trajectory_comparison.png?v=historical-replay-20260916" target="_blank" rel="noopener">
+                <img src="static/images/tvfr_trajectory_comparison.png?v=historical-replay-20260916" loading="lazy"
                      alt="Recorded trajectories for the 3-to-2 and 1-to-3 transitions: Without TVFR on the left and With TVFR on the right.">
               </a>
               <p class="tvfr-caption">Matched x–y limits and equal metric aspect ratios within each comparison.
@@ -210,8 +219,8 @@
             </div>
             <div class="contrib-metric-panel tvfr-result" id="metric-tvfr-transients">
               <h3 class="tvfr-result-title">Motion Smoothness</h3>
-              <a href="static/images/tvfr_transient_comparison.png?v=motion-legends-4" target="_blank" rel="noopener">
-                <img src="static/images/tvfr_transient_comparison.png?v=motion-legends-4" loading="lazy"
+              <a href="static/images/tvfr_transient_comparison.png?v=historical-replay-20260916" target="_blank" rel="noopener">
+                <img src="static/images/tvfr_transient_comparison.png?v=historical-replay-20260916" loading="lazy"
                      alt="Lateral and forward velocity traces and per-WMR excess lateral travel: Without TVFR versus With TVFR.">
               </a>
               <p class="tvfr-caption">Top: lateral velocity. Middle: forward velocity.
