@@ -242,21 +242,22 @@
     <h2 class="title is-3 has-text-centered" id="costs-title">Additional Cost Function Design</h2>
     <p class="tvfr-intro">
       Three complementary penalties augment the original normalized-graph formation objective in JSTP.
-      Let \(\mathbf p_i,\mathbf v_i\in\mathbb R^2\) denote the predicted position and velocity of WMR \(i\),
-      and let \(\mathbf r_i(t),\dot{\mathbf r}_i(t)\) denote its time-varying relative reference.
+      Let \(\mathbf p_u,\dot{\mathbf p}_u\in\mathbb R^2\) denote the predicted position and velocity of WMR \(u\in\mathcal V\),
+      and let \(\mathbf r_u(t),\dot{\mathbf r}_u(t)\) denote its time-varying relative reference.
       An overbar denotes the mean over all \(N\) WMRs. Each WMR optimizes its own trajectory using received peer predictions.
+      Here \(u\) indexes WMRs, while \(i\) and \(j\) index polynomial pieces and samples, respectively.
     </p>
     <article class="tvfr-cost-card">
-      <h3 class="title is-4">1. Metric Relative-Position Cost</h3>
-      <p>The normalized graph objective is invariant to rigid transformations and uniform scaling.
-        A translation-aligned metric penalty additionally specifies the desired formation scale and orientation,
+      <h3 class="title is-4">1. Relative-Position Cost</h3>
+      <p>The graph objective is invariant to rigid transformations.
+        A translation-aligned metric penalty additionally specifies the desired formation orientation,
         while leaving the group free to move forward:</p>
       <div class="tvfr-equation">
         \[
         \begin{aligned}
-          \mathbf e_{p,i}&=(\mathbf p_i-\bar{\mathbf p})-(\mathbf r_i-\bar{\mathbf r}),\\
-          c_p&=\frac{1}{N}\sum_{i=1}^{N}\|\mathbf e_{p,i}\|^2,
-          &\nabla_{\mathbf p_i}c_p&=\frac{2}{N}\mathbf e_{p,i}.
+          \mathbf e_{\mathrm{pos},u}&=(\mathbf p_u-\bar{\mathbf p})-(\mathbf r_u-\bar{\mathbf r}),\\
+          g_{\mathrm{pos}}&=\frac{1}{N}\sum_{u\in\mathcal V}\|\mathbf e_{\mathrm{pos},u}\|_2^2,\\
+          \frac{\partial g_{\mathrm{pos}}}{\partial\mathbf p_u}&=\frac{2}{N}\mathbf e_{\mathrm{pos},u}.
         \end{aligned}
         \]
       </div>
@@ -265,23 +266,23 @@
     <article class="tvfr-cost-card">
       <h3 class="title is-4">2. Relative-Velocity Cost</h3>
       <p>Position-only pursuit may cause repeated acceleration and braking.
-        Tracking the derivative of the same evolving reference coordinates the relative motion required for reconfiguration:</p>
+        Tracking the derivative of the same evolving reference coordinates the relative motion required for transition:</p>
       <div class="tvfr-equation">
         \[
         \begin{aligned}
-          \mathbf e_{v,i}&=(\mathbf v_i-\bar{\mathbf v})-(\dot{\mathbf r}_i-\overline{\dot{\mathbf r}}),\\
-          c_v&=\frac{1}{N}\sum_{i=1}^{N}\|\mathbf e_{v,i}\|^2,
-          &\nabla_{\mathbf v_i}c_v&=\frac{2}{N}\mathbf e_{v,i}.
+          \mathbf e_{\mathrm{vel},u}&=(\dot{\mathbf p}_u-\overline{\dot{\mathbf p}})-(\dot{\mathbf r}_u-\overline{\dot{\mathbf r}}),\\
+          g_{\mathrm{vel}}&=\frac{1}{N}\sum_{u\in\mathcal V}\|\mathbf e_{\mathrm{vel},u}\|_2^2,\\
+          \frac{\partial g_{\mathrm{vel}}}{\partial\dot{\mathbf p}_u}&=\frac{2}{N}\mathbf e_{\mathrm{vel},u}.
         \end{aligned}
         \]
       </div>
       <p>After the reference transition ends, this term encourages a common team velocity without imposing zero forward speed.
-        With \(\mathbf a_i=\dot{\mathbf v}_i\), its temporal derivative and that of the position cost are:</p>
+        With acceleration \(\ddot{\mathbf p}_u\), its temporal derivative and that of the position cost are:</p>
       <div class="tvfr-equation">
         \[
         \begin{aligned}
-          \dot c_p&=\frac{2}{N}\sum_i\mathbf e_{p,i}^{\mathsf T}(\mathbf v_i-\dot{\mathbf r}_i),\\
-          \dot c_v&=\frac{2}{N}\sum_i\mathbf e_{v,i}^{\mathsf T}(\mathbf a_i-\ddot{\mathbf r}_i).
+          \frac{\mathrm d g_{\mathrm{pos}}}{\mathrm dt}&=\frac{2}{N}\sum_{u\in\mathcal V}\mathbf e_{\mathrm{pos},u}^{\top}(\dot{\mathbf p}_u-\dot{\mathbf r}_u),\\
+          \frac{\mathrm d g_{\mathrm{vel}}}{\mathrm dt}&=\frac{2}{N}\sum_{u\in\mathcal V}\mathbf e_{\mathrm{vel},u}^{\top}(\ddot{\mathbf p}_u-\ddot{\mathbf r}_u).
         \end{aligned}
         \]
       </div>
@@ -289,34 +290,55 @@
     <article class="tvfr-cost-card">
       <h3 class="title is-4">3. Lateral Route Anchoring</h3>
       <p>Relative penalties alone do not prevent collective lateral drift.
-        On the straight transition sections used here, let \(y_c=y_{\mathrm{route}}+\bar q_y\)
+        On the straight transition sections used here, let \(y_c=y_{\mathrm{route}}+\delta_y\)
         be the desired group-center ordinate, including the mean assigned-slot offset.
+        Here \(\delta_y\) is that fixed offset, distinct from the MINCO waypoint variables \(\mathbf q\).
         We penalize lateral center displacement and velocity, while leaving longitudinal translation unconstrained:</p>
       <div class="tvfr-equation">
         \[
         \begin{aligned}
-          c_y&=(\bar y-y_c)^2,
-          &\nabla_{\mathbf p_i}c_y&=\frac{2}{N}(\bar y-y_c)\mathbf e_y,\\
-          c_{\dot y}&=\bar v_y^{\,2},
-          &\nabla_{\mathbf v_i}c_{\dot y}&=\frac{2}{N}\bar v_y\mathbf e_y,
+          g_y&=(\bar y-y_c)^2,
+          &g_{\dot y}&=\overline{\dot y}^{\,2},\\
+          \frac{\partial g_y}{\partial\mathbf p_u}&=\frac{2}{N}(\bar y-y_c)\mathbf e_y,
+          &\frac{\partial g_{\dot y}}{\partial\dot{\mathbf p}_u}&=\frac{2}{N}\overline{\dot y}\,\mathbf e_y.
         \end{aligned}
         \qquad \mathbf e_y=(0,1)^{\mathsf T}.
         \]
       </div>
       <p>These terms suppress whole-team lateral wandering without fixing the team's longitudinal position.
-        Here \(\dot c_y=2(\bar y-y_c)\bar v_y\) and \(\dot c_{\dot y}=2\bar v_y\bar a_y\).</p>
+        Here \(\mathrm d g_y/\mathrm dt=2(\bar y-y_c)\overline{\dot y}\) and
+        \(\mathrm d g_{\dot y}/\mathrm dt=2\overline{\dot y}\,\overline{\ddot y}\).</p>
     </article>
     <div class="tvfr-cost-summary">
       <p>The additional instantaneous cost is</p>
       <div class="tvfr-equation">
         \[
-          C_{\mathrm{add}}=\lambda_p(c_p+c_y)+\lambda_v(c_v+c_{\dot y}),
-          \qquad \lambda_p,\lambda_v\geq0.
+          \begin{aligned}
+          g_{\mathrm{lat}}&=\alpha_p g_y+\alpha_v g_{\dot y},\\
+          g_{\mathrm{add}}&=\alpha_p g_{\mathrm{pos}}+\alpha_v g_{\mathrm{vel}}+g_{\mathrm{lat}},
+          \qquad\alpha_p,\alpha_v\geq0.
+          \end{aligned}
         \]
       </div>
-      <p>It complements, rather than replaces, the original formation, obstacle-avoidance,
-        inter-robot separation, dynamic-feasibility, and trajectory-smoothness objectives.
-        The corresponding derivatives are propagated through the polynomial trajectory parameterization.</p>
+      <p>Using the paper's trapezoidal accumulation, the additional trajectory penalty is</p>
+      <div class="tvfr-equation">
+        \[
+          \begin{aligned}
+          \mathcal P_{\mathrm{add}}
+          &=\sum_{i=1}^{M}\frac{T_i}{K_i}
+            \sum_{j=0}^{K_i}\omega_j\,g_{\mathrm{add}}(t_j,\tau_j),\\
+          t_j&=\frac{jT_i}{K_i},\qquad
+          \tau_j=\sum_{r=1}^{i-1}T_r+t_j.
+          \end{aligned}
+        \]
+      </div>
+      <p>Here \(\omega_0=\omega_{K_i}=1/2\) and the interior weights equal one.
+        The ego state is evaluated at \(\mathbf p_i(t_j)\), and peer trajectories and TVFR references
+        at the corresponding \(\tau_j\), expressed using the same time origin.
+        The internal weights \(\alpha_p,\alpha_v\) correspond to the implemented position and velocity weights;
+        the outer objective weight of \(\mathcal P_{\mathrm{add}}\) is set to one.
+        In implementation, the same formation-preview window is applied to the original and additional formation penalties.</p>
+      <p>The corresponding derivatives are propagated through the polynomial trajectory parameterization.</p>
     </div>
   </div>
 </section>
