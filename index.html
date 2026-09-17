@@ -36,7 +36,7 @@
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css?v=paired-metrics-20260916">
-  <link rel="stylesheet" href="static/css/tvfr.css?v=centered-equations-20260917">
+  <link rel="stylesheet" href="static/css/tvfr.css?v=caption-spacing-20260917">
 
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -60,7 +60,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Demonstration for CFOO</h1>
+            <h1 class="title is-1 publication-title">Demonstration of CFOO</h1>
               <h2 class="subtitle has-text-centered"> <!-- Adjusted font size and alignment -->
                 CFOO: a Conflict-Free Online Orchestration framework for continuous formation navigation <br> of wheeled mobile robots (WMRs).
               </h2>
@@ -135,7 +135,7 @@
         type="video/mp4"> 
       </video>
       <p class="subtitle has-text-centered">
-        These results demonstrate CFOO's ability to adapt WMR formations to varying navigable environments while maintaining smooth, continuous navigation.
+        These results demonstrate CFOO's ability to adapt WMR formations to changes in the environmental conditions while maintaining smooth, continuous navigation.
       </p>
   <div class="motiv-contrib-block">
     <div class="contrib-list">
@@ -144,13 +144,13 @@
           <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
           <div class="contrib-content">
             <p class="contrib-heading">Results &amp; Metrics</p>
-            <p>The following plots show formation error and individual WMR lateral positions. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
+            <p>The following plots show formation error and individual WMR lateral positions. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR Indices</em> tab.</p>
           </div>
         </div>
         <div class="motiv-inline-video">
           <div class="contrib-metric-tabs">
             <button class="contrib-metric-tab is-active" data-metric="transition-formation-error">Formation Error &amp; Lateral Position</button>
-            <button class="contrib-metric-tab" data-metric="transition-wmr-index">WMR-Index</button>
+            <button class="contrib-metric-tab" data-metric="transition-wmr-index">WMR Indices</button>
           </div>
           <div class="contrib-metric-panel" id="metric-transition-formation-error">
             <div class="contrib-metric-pair">
@@ -165,7 +165,7 @@
             </div>
           </div>
           <div class="contrib-metric-panel" id="metric-transition-wmr-index" style="display:none;">
-            <img src="static/images/WMR-index-V2.jpg" alt="WMR-Index" style="width:50%; display:block; margin:0 auto;">
+            <img src="static/images/WMR-index-V2.jpg" alt="WMR Indices" style="width:50%; display:block; margin:0 auto;">
           </div>
         </div>
       </div>
@@ -187,15 +187,15 @@
     <p class="tvfr-intro">
       TVFR gradually evolves the desired formation instead of imposing an abrupt target change.
       The event-aligned simulation replays below compare <strong>Without TVFR</strong>
-      (instantaneous reference transition) and <strong>With TVFR</strong>
+      (instantaneous reference update) and <strong>With TVFR</strong>
       (smoothly evolving references) during the 3-to-2 and 1-to-3 formation transitions,
       using identical obstacle geometry, reference route, initial conditions, and transition trigger rules.
     </p>
     <video id="tvfr-comparison-video" class="tvfr-video" controls muted playsinline preload="metadata"
-           poster="static/images/tvfr_comparison_poster.png?v=historical-replay-20260916"
+           poster="static/images/tvfr_comparison_poster.png?v=transition-wording-20260917"
            aria-label="Without TVFR and With TVFR formation transitions shown side by side">
-      <source src="static/videos/tvfr_comparison.mp4?v=historical-replay-20260916" type="video/mp4">
-      Your browser does not support embedded video. <a href="static/videos/tvfr_comparison.mp4?v=historical-replay-20260916">Download the comparison video.</a>
+      <source src="static/videos/tvfr_comparison.mp4?v=transition-wording-20260917" type="video/mp4">
+      Your browser does not support embedded video. <a href="static/videos/tvfr_comparison.mp4?v=transition-wording-20260917">Download the comparison video.</a>
     </video>
     <p class="tvfr-caption">Left: <strong>Without TVFR</strong>. Right: <strong>With TVFR</strong>.
       Both views use 1× playback and identical spatial scales. The 3→2 comparison is followed by 1→3.</p>
@@ -213,8 +213,8 @@
           <div class="motiv-inline-video">
             <div class="contrib-metric-panel tvfr-result" id="metric-tvfr-trajectories">
               <h3 class="tvfr-result-title">Transition Trajectories</h3>
-              <a href="static/images/tvfr_trajectory_comparison.png?v=historical-replay-20260916" target="_blank" rel="noopener">
-                <img src="static/images/tvfr_trajectory_comparison.png?v=historical-replay-20260916" loading="lazy"
+              <a href="static/images/tvfr_trajectory_comparison.png?v=transition-wording-20260917" target="_blank" rel="noopener">
+                <img src="static/images/tvfr_trajectory_comparison.png?v=transition-wording-20260917" loading="lazy"
                      alt="Recorded trajectories for the 3-to-2 and 1-to-3 transitions: Without TVFR on the left and With TVFR on the right.">
               </a>
               <p class="tvfr-caption">Matched x–y limits and equal metric aspect ratios within each comparison.
@@ -222,17 +222,19 @@
             </div>
             <div class="contrib-metric-panel tvfr-result" id="metric-tvfr-transients">
               <h3 class="tvfr-result-title">Motion Smoothness</h3>
-              <a href="static/images/tvfr_transient_comparison.png?v=transition-start-20260917" target="_blank" rel="noopener">
-                <img src="static/images/tvfr_transient_comparison.png?v=transition-start-20260917" loading="lazy"
-                     alt="Lateral and forward velocity traces and per-WMR excess lateral travel: Without TVFR versus With TVFR.">
+              <a href="static/images/tvfr_transient_comparison.png?v=longitudinal-20260917" target="_blank" rel="noopener">
+                <img src="static/images/tvfr_transient_comparison.png?v=longitudinal-20260917" loading="lazy"
+                     alt="Lateral and longitudinal velocity traces and per-WMR excess lateral travel: Without TVFR versus With TVFR.">
               </a>
-              <p class="tvfr-caption">Top: lateral velocity. Middle: forward velocity.
-                Bottom: excess lateral travel during the first 16 s after transition.
+              <div class="tvfr-metric-explanation">
+              <p class="tvfr-caption">Top: lateral velocity. Middle: longitudinal velocity.
+                Bottom: excess lateral travel during the first 16 s after transition onset.
                 This measures lateral back-and-forth motion beyond the net displacement.</p>
               <div class="tvfr-equation">
                 \[E_{y,u}=\sum_k |y_{u,k+1}-y_{u,k}|-|y_{u,\mathrm{end}}-y_{u,\mathrm{start}}|.\]
               </div>
               <p class="tvfr-caption">Here, \(u\) indexes WMRs and \(k\) indexes samples.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -367,7 +369,7 @@ Formation control of wheeled mobile robots (WMRs) has been widely studied due to
 However, existing studies primarily focus on tracking predefined formations, with limited adaptability to varying environments. 
 To address this limitation, we propose CFOO, a Conflict-Free Online Orchestration framework for continuous formation navigation of WMRs that integrates centralized formation generation with distributed formation maintenance.
 The upper layer monitors the environment in real time and generates adaptive formations as needed, using the proposed TCF-R2T (Trajectory-Conflict-Free Robot-to-Target assignment) algorithm to compute optimal assignments in polynomial time for timely, conflict-free formation transitions.
-At the lower layer, each WMR continuously employs JSTP (Joint Spatio-Temporal trajectory Planning) to maintain the given formation by jointly optimizing spatial positions and segment durations, improving coordination over spatial-only optimization with fixed durations. 
+At the lower layer, each WMR continuously employs JSTP (Joint Spatio-Temporal Trajectory Planning) to maintain the given formation by jointly optimizing spatial positions and segment durations, improving coordination over spatial-only optimization with fixed durations. 
 By coordinating these two layers, CFOO orchestrates WMRs to adapt their formations to varying environments and thus enable continuous navigation.
 Moreover, we design a Time-Varying Formation Reference (TVFR) mechanism to facilitate smooth transitions between successive desired formations.
 Both simulation and real-world experiments validate the effectiveness and adaptability of CFOO. Experimental videos are available on our project website.

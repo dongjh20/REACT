@@ -79,6 +79,9 @@
       0.0,
       0.45
     ],
+    "transition_label_x_seconds": 1.2,
+    "transition_label_y_fraction": 0.88,
+    "transition_marker_color": "#6c7883",
     "dpi": 180,
     "trajectory_linewidth": 1.6,
     "velocity_linewidth": 1.1,
@@ -863,9 +866,9 @@
     "pixel_format": "yuv420p",
     "faststart": true
   },
-  "video_sha256": "0eeae5d76d623e18644ad8280bc6113ec5560a5f673bb58b6a2d23f717e97d6d",
+  "video_sha256": "551dcbf9859f37b68fa6f785eeb16896039c0c80caebf7011c5f5c33ee4755e6",
   "code_sha256": {
-    "render_tvfr_comparison.py": "109eec54adc603f64e0e1f29b7c5fece305f39c6eea5ad463c4f2fae84ccf8e7",
+    "render_tvfr_comparison.py": "2f71893b00614dcba726cbef38541c8a4e245ff3231af66686b479a132b95400",
     "plot_recorded_figures.py": "f7a35e9983288eb77f67f7c270022b8d839531bffd4679ffb40d84691c3ae6ab",
     "render_recorded_video.py": "25b375487bb72b4fed872816c483ded9bf84be31cfe6d869ac710c2b8c496a66"
   }

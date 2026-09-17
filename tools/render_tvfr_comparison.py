@@ -223,7 +223,7 @@ def render_figures(pairs, output):
             ax.grid(alpha=.15)
     colors = np.asarray(pairs[0][1]['cfg']['visualization']['optimal_rgb'])/255.
     handles = [Line2D([], [], color=c, lw=2, label=f'WMR {i}') for i, c in enumerate(colors)]
-    handles.append(Line2D([], [], color='#555', marker='o', ls='', label='Switch instant'))
+    handles.append(Line2D([], [], color='#555', marker='o', ls='', label='Transition start'))
     fig.legend(handles=handles, loc='upper center', ncol=8, frameon=False,
                fontsize=STYLE['legend_font_size'], columnspacing=1.1, handlelength=1.5)
     save_figure(fig, output, 'tvfr_trajectory_comparison')
@@ -244,7 +244,7 @@ def render_figures(pairs, output):
             axes[2, col].bar(np.arange(7)+(method-.5)*.36, values, width=.36,
                             color=colors[method])
         axes[0, col].set_title(f'{("3 → 2", "1 → 3")[col]} columns', pad=14)
-        for row, label in enumerate(('Lateral velocity [m/s]', 'Forward velocity [m/s]')):
+        for row, label in enumerate(('Lateral velocity [m/s]', 'Longitudinal velocity [m/s]')):
             ax = axes[row, col]
             ax.set(xlabel='Time from transition [s]', ylabel=label,
                    xlim=(-STYLE['pre_seconds'], STYLE['post_seconds']))
@@ -359,7 +359,7 @@ class PairReplay:
             video.text(frame, LABELS[m], (m+.5)*self.width, STYLE['title_height']+5,
                        STYLE['column_font_px'], bgr, centered=True)
             frame[top:top+self.height, m*self.width:(m+1)*self.width] = self.scene(m, k)
-        video.text(frame, f'Time from switch: {self.time[k]:+.2f} s   |   1× Playback   |   Identical spatial scale',
+        video.text(frame, f'Time from transition: {self.time[k]:+.2f} s   |   1× Playback   |   Identical spatial scale',
                    STYLE['width']/2, top+self.height+8, STYLE['footer_font_px'], centered=True)
         return frame
 

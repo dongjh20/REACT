@@ -103,8 +103,16 @@ def main():
                 headings = page.locator('h2').all_text_contents()
                 real = next(i for i, t in enumerate(headings) if t == 'Real-World Experiments')
                 tvfr = headings.index('Smoother Formation Transitions with TVFR')
-                costs = headings.index('Additional Cost Function Design')
+                costs = page.locator('h2').evaluate_all(
+                    "nodes => nodes.findIndex(node => node.id === 'costs-title')")
                 assert real < tvfr < costs
+                assert page.locator('h1').inner_text() == 'Demonstration of CFOO'
+                assert page.locator('[data-metric="transition-wmr-index"]').inner_text() == 'WMR Indices'
+                body = page.locator('body').inner_text()
+                for wording in ('changes in the navigable space', 'instantaneous reference update',
+                                'first 16 s after transition onset',
+                                'Joint Spatio-Temporal Trajectory Planning'):
+                    assert wording in body, wording
                 section_text = page.locator('#tvfr-comparison').inner_text()
                 assert 'Without TVFR' in section_text and 'With TVFR' in section_text
                 assert 'earlier version' not in section_text.lower()
