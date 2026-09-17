@@ -36,7 +36,7 @@
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css?v=paired-metrics-20260916">
-  <link rel="stylesheet" href="static/css/tvfr.css?v=stacked-3">
+  <link rel="stylesheet" href="static/css/tvfr.css?v=centered-equations-20260917">
 
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -101,7 +101,7 @@
 </section>
 
 <p style="text-align: center; font-size: 1.16rem; color: #e07b00; background: #fff8e1; border-left: 4px solid #f5a623; padding: 0.75rem 1.25rem; margin: 1rem auto; max-width: 860px; border-radius: 4px;">
-  <strong>⚠ Kind Reminder:</strong> Since the anonymous platform is not the native website platform, the videos on the webpage may sometimes take a little while to load or refresh. Thank you for your patience.
+  <strong>Video loading:</strong> Videos may take a moment to load on the anonymous hosting platform. <br>Thank you for your patience.
 </p>
 
 
@@ -109,14 +109,14 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body" style="padding-top: 1.5rem;">
-      <h2 class="title is-3;" style="text-align: center;">Simulation</h2>
+      <h2 class="title is-3" style="text-align: center;">Simulation</h2>
       <video poster="" id="simulation-video" controls muted playsinline height="100%">
         <!-- Your video here -->
         <source src="static/videos/formation_navigation_four_panels.mp4"
         type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-       These results demonstrate CFOO's effectiveness in enabling continuous formation navigation of WMRs in varying environments. Moreover, the TVFR mechanism smooths these formation transitions without large trajectory oscillations.
+       These results demonstrate CFOO's effectiveness in enabling continuous formation navigation of WMRs in varying environments. The TVFR mechanism effectively reduces motion oscillations caused by abrupt updates to JSTP’s desired formation during formation transitions.
       </h2>
     </div>
   </div>
@@ -124,16 +124,19 @@
 <!-- End teaser video -->
 
 <!-- Teaser video-->
-<section class="hero teaser">
+<section class="hero teaser" id="real-world-experiments">
   <div class="container is-max-desktop">
     <div class="hero-body" style="padding-top: 1.6rem;">
-      <h2 class="title is-3;" style="text-align: center;">Real-World Experiments</h2>
+      <h2 class="title is-3" style="text-align: center;">Real-World Experiments</h2>
             <h2 class="title is-4" style="margin-top: 3rem; text-align: center;">Continuous Formation Navigation</h2>
       <video poster="" id="real-navigation-video" controls muted playsinline height="100%">
         <!-- Your video here -->
         <source src="static/videos/real-transition.mp4?v=h264-20260911"
         type="video/mp4"> 
       </video>
+      <p class="subtitle has-text-centered">
+        These results demonstrate CFOO's ability to adapt WMR formations to varying navigable environments while maintaining smooth, continuous navigation.
+      </p>
   <div class="motiv-contrib-block">
     <div class="contrib-list">
       <div class="contrib-accordion">
@@ -141,7 +144,7 @@
           <span class="contrib-index"><i class="fas fa-chart-bar" style="font-size:1.3rem; color:#87CEEB;"></i></span>
           <div class="contrib-content">
             <p class="contrib-heading">Results &amp; Metrics</p>
-            <p>Quantitative evaluation results include formation error metrics and lateral position. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
+            <p>The following plots show formation error and individual WMR lateral positions. For the correspondence between WMR indices in the video above and those in the figures, see the <em>WMR-Index</em> tab.</p>
           </div>
         </div>
         <div class="motiv-inline-video">
@@ -184,9 +187,9 @@
     <p class="tvfr-intro">
       TVFR gradually evolves the desired formation instead of imposing an abrupt target change.
       The event-aligned simulation replays below compare <strong>Without TVFR</strong>
-      (instantaneous reference switching) and <strong>With TVFR</strong>
+      (instantaneous reference transition) and <strong>With TVFR</strong>
       (smoothly evolving references) during the 3-to-2 and 1-to-3 formation transitions,
-      using identical obstacle geometry, reference route, initial conditions, and switching trigger rules.
+      using identical obstacle geometry, reference route, initial conditions, and transition trigger rules.
     </p>
     <video id="tvfr-comparison-video" class="tvfr-video" controls muted playsinline preload="metadata"
            poster="static/images/tvfr_comparison_poster.png?v=historical-replay-20260916"
@@ -203,7 +206,7 @@
             <span class="contrib-index"><i class="fas fa-chart-bar" aria-hidden="true" style="font-size:1.3rem; color:#87CEEB;"></i></span>
             <div class="contrib-content">
               <p class="contrib-heading">Transition Trajectories &amp; Motion Smoothness</p>
-              <p>Recorded motion of all seven WMRs, aligned at the switching event (\(t=0\)).
+              <p>Recorded motion of all seven WMRs, aligned at the transition event (\(t=0\)).
               </p>
             </div>
           </div>
@@ -215,20 +218,21 @@
                      alt="Recorded trajectories for the 3-to-2 and 1-to-3 transitions: Without TVFR on the left and With TVFR on the right.">
               </a>
               <p class="tvfr-caption">Matched x–y limits and equal metric aspect ratios within each comparison.
-                Colored dots mark each WMR's position at the switching event. Click the figure to enlarge.</p>
+                Colored dots mark each WMR's position at the transition event. Click the figure to enlarge.</p>
             </div>
             <div class="contrib-metric-panel tvfr-result" id="metric-tvfr-transients">
               <h3 class="tvfr-result-title">Motion Smoothness</h3>
-              <a href="static/images/tvfr_transient_comparison.png?v=historical-replay-20260916" target="_blank" rel="noopener">
-                <img src="static/images/tvfr_transient_comparison.png?v=historical-replay-20260916" loading="lazy"
+              <a href="static/images/tvfr_transient_comparison.png?v=transition-start-20260917" target="_blank" rel="noopener">
+                <img src="static/images/tvfr_transient_comparison.png?v=transition-start-20260917" loading="lazy"
                      alt="Lateral and forward velocity traces and per-WMR excess lateral travel: Without TVFR versus With TVFR.">
               </a>
               <p class="tvfr-caption">Top: lateral velocity. Middle: forward velocity.
-                Bottom: excess lateral travel during the first 16 s after switching.
+                Bottom: excess lateral travel during the first 16 s after transition.
                 This measures lateral back-and-forth motion beyond the net displacement.</p>
               <div class="tvfr-equation">
-                \[E_{y,i}=\sum_k |y_{i,k+1}-y_{i,k}|-|y_{i,\mathrm{end}}-y_{i,\mathrm{start}}|.\]
+                \[E_{y,u}=\sum_k |y_{u,k+1}-y_{u,k}|-|y_{u,\mathrm{end}}-y_{u,\mathrm{start}}|.\]
               </div>
+              <p class="tvfr-caption">Here, \(u\) indexes WMRs and \(k\) indexes samples.</p>
             </div>
           </div>
         </div>
@@ -239,106 +243,114 @@
 
 <section class="section hero is-light tvfr-section" id="additional-costs" aria-labelledby="costs-title">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered" id="costs-title">Additional Cost Function Design</h2>
+    <h2 class="title is-3 has-text-centered" id="costs-title">Motion Regularization \(\mathcal{P}_{\mathrm{add}}\)</h2>
     <p class="tvfr-intro">
-      Three complementary penalties augment the original normalized-graph formation objective in JSTP.
-      Let \(\mathbf p_u,\dot{\mathbf p}_u\in\mathbb R^2\) denote the predicted position and velocity of WMR \(u\in\mathcal V\),
-      and let \(\mathbf r_u(t),\dot{\mathbf r}_u(t)\) denote its time-varying relative reference.
-      An overbar denotes the mean over all \(N\) WMRs. Each WMR optimizes its own trajectory using received peer predictions.
-      Here \(u\) indexes WMRs, while \(i\) and \(j\) index polynomial pieces and samples, respectively.
+      The motion regularization term \(\mathcal P_{\mathrm{add}}\) complements the graph-based formation maintenance cost
+      \(\mathcal P_{\mathrm{form}}\) with relative-position, relative-velocity, and lateral route-anchoring costs.
+      Here, \(\mathbf p_u\) and \(\dot{\mathbf p}_u\) denote the position and velocity of WMR \(u\in\mathcal V\),
+      while \(\mathbf r_u\) and \(\dot{\mathbf r}_u\) denote its TVFR reference and reference velocity.
+      Overbars denote averages over all \(N\) WMRs.
+    </p>
+    <p class="tvfr-intro">
+      Each WMR optimizes its own trajectory using received trajectories of the other WMRs.
+      All positions, velocities, and references are evaluated at the same global timestamp \(\tau_j\).
+      The ego position is \(\mathbf p_i(t_j)\), while the position \(\mathbf p_u(\tau_j)\) of each other WMR \(u\) is evaluated from its received trajectory.
+      The local sample time is \(t_j=jT_i/K_i\), with \(\tau_j=\sum_{r=1}^{i-1}T_r+t_j\).
+      Here, \(u\) indexes WMRs, while \(i\) and \(j\) index polynomial segments and samples, respectively.
+      Time arguments are omitted below for brevity.
     </p>
     <article class="tvfr-cost-card">
       <h3 class="title is-4">1. Relative-Position Cost</h3>
-      <p>The graph objective is invariant to rigid transformations.
-        A translation-aligned metric penalty additionally specifies the desired formation orientation,
-        while leaving the group free to move forward:</p>
+      <p>The graph-based formation cost does not uniquely determine formation orientation.
+        With isotropic distance weights (\(a=1\)), it is invariant to global rotation.
+        We therefore penalize centroid-relative position errors to align the formation while preserving translational freedom:</p>
       <div class="tvfr-equation">
         \[
-        \begin{aligned}
-          \mathbf e_{\mathrm{pos},u}&=(\mathbf p_u-\bar{\mathbf p})-(\mathbf r_u-\bar{\mathbf r}),\\
-          g_{\mathrm{pos}}&=\frac{1}{N}\sum_{u\in\mathcal V}\|\mathbf e_{\mathrm{pos},u}\|_2^2,\\
-          \frac{\partial g_{\mathrm{pos}}}{\partial\mathbf p_u}&=\frac{2}{N}\mathbf e_{\mathrm{pos},u}.
-        \end{aligned}
+        \begin{gathered}
+          \mathbf e_{\mathrm{pos},u}=(\mathbf p_u-\bar{\mathbf p})-(\mathbf r_u-\bar{\mathbf r}),\\
+          g_{\mathrm{pos}}=\frac{1}{N}\sum_{u\in\mathcal V}\|\mathbf e_{\mathrm{pos},u}\|_2^2,\\
+          \frac{\partial g_{\mathrm{pos}}}{\partial\mathbf p_u}=\frac{2}{N}\mathbf e_{\mathrm{pos},u}.
+        \end{gathered}
         \]
       </div>
-      <p>This term promotes correctly spaced, aligned columns rather than merely a similar distance-graph shape.</p>
+      <p>This term promotes the relative positions and orientation specified by the TVFR reference without fixing the formation centroid.</p>
     </article>
     <article class="tvfr-cost-card">
       <h3 class="title is-4">2. Relative-Velocity Cost</h3>
-      <p>Position-only pursuit may cause repeated acceleration and braking.
-        Tracking the derivative of the same evolving reference coordinates the relative motion required for transition:</p>
+      <p>Tracking relative positions alone may cause repeated acceleration and braking.
+        We therefore penalize the difference between centroid-relative velocities and the corresponding TVFR reference derivatives:</p>
       <div class="tvfr-equation">
         \[
-        \begin{aligned}
-          \mathbf e_{\mathrm{vel},u}&=(\dot{\mathbf p}_u-\overline{\dot{\mathbf p}})-(\dot{\mathbf r}_u-\overline{\dot{\mathbf r}}),\\
-          g_{\mathrm{vel}}&=\frac{1}{N}\sum_{u\in\mathcal V}\|\mathbf e_{\mathrm{vel},u}\|_2^2,\\
-          \frac{\partial g_{\mathrm{vel}}}{\partial\dot{\mathbf p}_u}&=\frac{2}{N}\mathbf e_{\mathrm{vel},u}.
-        \end{aligned}
+        \begin{gathered}
+          \mathbf e_{\mathrm{vel},u}=(\dot{\mathbf p}_u-\overline{\dot{\mathbf p}})-(\dot{\mathbf r}_u-\overline{\dot{\mathbf r}}),\\
+          g_{\mathrm{vel}}=\frac{1}{N}\sum_{u\in\mathcal V}\|\mathbf e_{\mathrm{vel},u}\|_2^2,\\
+          \frac{\partial g_{\mathrm{vel}}}{\partial\dot{\mathbf p}_u}=\frac{2}{N}\mathbf e_{\mathrm{vel},u}.
+        \end{gathered}
         \]
       </div>
-      <p>After the reference transition ends, this term encourages a common team velocity without imposing zero forward speed.
-        With acceleration \(\ddot{\mathbf p}_u\), its temporal derivative and that of the position cost are:</p>
+      <p>During formation transitions, this term coordinates the relative motion specified by TVFR.
+        Once the reference becomes constant, it encourages a common team velocity without requiring the WMRs to stop.
+        With acceleration \(\ddot{\mathbf p}_u\), the common-time derivatives of the position and velocity costs are:</p>
       <div class="tvfr-equation">
         \[
-        \begin{aligned}
-          \frac{\mathrm d g_{\mathrm{pos}}}{\mathrm dt}&=\frac{2}{N}\sum_{u\in\mathcal V}\mathbf e_{\mathrm{pos},u}^{\top}(\dot{\mathbf p}_u-\dot{\mathbf r}_u),\\
-          \frac{\mathrm d g_{\mathrm{vel}}}{\mathrm dt}&=\frac{2}{N}\sum_{u\in\mathcal V}\mathbf e_{\mathrm{vel},u}^{\top}(\ddot{\mathbf p}_u-\ddot{\mathbf r}_u).
-        \end{aligned}
+        \begin{gathered}
+          \frac{\mathrm d g_{\mathrm{pos}}}{\mathrm dt}=\frac{2}{N}\sum_{u\in\mathcal V}\mathbf e_{\mathrm{pos},u}^{\top}(\dot{\mathbf p}_u-\dot{\mathbf r}_u),\\
+          \frac{\mathrm d g_{\mathrm{vel}}}{\mathrm dt}=\frac{2}{N}\sum_{u\in\mathcal V}\mathbf e_{\mathrm{vel},u}^{\top}(\ddot{\mathbf p}_u-\ddot{\mathbf r}_u).
+        \end{gathered}
         \]
       </div>
     </article>
     <article class="tvfr-cost-card">
       <h3 class="title is-4">3. Lateral Route Anchoring</h3>
-      <p>Relative penalties alone do not prevent collective lateral drift.
-        On the straight transition sections used here, let \(y_c=y_{\mathrm{route}}+\delta_y\)
-        be the desired group-center ordinate, including the mean assigned-slot offset.
-        Here \(\delta_y\) is that fixed offset, distinct from the MINCO waypoint variables \(\mathbf q\).
-        We penalize lateral center displacement and velocity, while leaving longitudinal translation unconstrained:</p>
+      <p>Relative-position and relative-velocity costs do not prevent collective lateral drift.
+        During formation transitions along straight route segments, we penalize lateral centroid position error and velocity.
+        The fixed lateral target \(y_c=y_{\mathrm{route}}+\delta_y\) combines the route coordinate with the mean assigned-slot offset \(\delta_y\):</p>
       <div class="tvfr-equation">
         \[
-        \begin{aligned}
-          g_y&=(\bar y-y_c)^2,
-          &g_{\dot y}&=\overline{\dot y}^{\,2},\\
-          \frac{\partial g_y}{\partial\mathbf p_u}&=\frac{2}{N}(\bar y-y_c)\mathbf e_y,
-          &\frac{\partial g_{\dot y}}{\partial\dot{\mathbf p}_u}&=\frac{2}{N}\overline{\dot y}\,\mathbf e_y.
-        \end{aligned}
-        \qquad \mathbf e_y=(0,1)^{\mathsf T}.
+        \begin{gathered}
+          g_y=(\bar y-y_c)^2,
+          \qquad g_{\dot y}=\overline{\dot y}^{\,2},\\
+          \frac{\partial g_y}{\partial\mathbf p_u}=\frac{2}{N}(\bar y-y_c)\mathbf e_y,
+          \qquad \frac{\partial g_{\dot y}}{\partial\dot{\mathbf p}_u}=\frac{2}{N}\overline{\dot y}\,\mathbf e_y.
+        \\
+        \mathbf e_y=(0,1)^{\mathsf T}.
+        \end{gathered}
         \]
       </div>
-      <p>These terms suppress whole-team lateral wandering without fixing the team's longitudinal position.
-        Here \(\mathrm d g_y/\mathrm dt=2(\bar y-y_c)\overline{\dot y}\) and
+      <p>These terms suppress collective lateral drift while leaving longitudinal motion unpenalized.
+        With \(y_c\) fixed on each straight segment, \(\mathrm d g_y/\mathrm dt=2(\bar y-y_c)\overline{\dot y}\) and
         \(\mathrm d g_{\dot y}/\mathrm dt=2\overline{\dot y}\,\overline{\ddot y}\).</p>
     </article>
     <div class="tvfr-cost-summary">
-      <p>The additional instantaneous cost is</p>
+      <p>The instantaneous motion regularization cost combines the three components:</p>
       <div class="tvfr-equation">
         \[
-          \begin{aligned}
-          g_{\mathrm{lat}}&=\alpha_p g_y+\alpha_v g_{\dot y},\\
-          g_{\mathrm{add}}&=\alpha_p g_{\mathrm{pos}}+\alpha_v g_{\mathrm{vel}}+g_{\mathrm{lat}},
+          \begin{gathered}
+          g_{\mathrm{lat}}=\alpha_p g_y+\alpha_v g_{\dot y},\\
+          g_{\mathrm{add}}=\alpha_p g_{\mathrm{pos}}+\alpha_v g_{\mathrm{vel}}+g_{\mathrm{lat}},
           \qquad\alpha_p,\alpha_v\geq0.
-          \end{aligned}
+          \end{gathered}
         \]
       </div>
-      <p>Using the paper's trapezoidal accumulation, the additional trajectory penalty is</p>
+      <p>Trapezoidal integration over the trajectory yields the motion regularization term used in JSTP:</p>
       <div class="tvfr-equation">
         \[
-          \begin{aligned}
+          \begin{gathered}
           \mathcal P_{\mathrm{add}}
-          &=\sum_{i=1}^{M}\frac{T_i}{K_i}
+          =\sum_{i=1}^{M}\frac{T_i}{K_i}
             \sum_{j=0}^{K_i}\omega_j\,g_{\mathrm{add}}(t_j,\tau_j),\\
-          t_j&=\frac{jT_i}{K_i},\qquad
+          t_j=\frac{jT_i}{K_i},\qquad
           \tau_j=\sum_{r=1}^{i-1}T_r+t_j.
-          \end{aligned}
+          \end{gathered}
         \]
       </div>
       <p>Here \(\omega_0=\omega_{K_i}=1/2\) and the interior weights equal one.
-        The ego state is evaluated at \(\mathbf p_i(t_j)\), and peer trajectories and TVFR references
-        at the corresponding \(\tau_j\), expressed using the same time origin.
-        The internal weights \(\alpha_p,\alpha_v\) correspond to the implemented position and velocity weights;
-        the outer objective weight of \(\mathcal P_{\mathrm{add}}\) is set to one.
-        In implementation, the same formation-preview window is applied to the original and additional formation penalties.</p>
-      <p>The corresponding derivatives are propagated through the polynomial trajectory parameterization.</p>
+        The ego state is evaluated at local time \(t_j\); received trajectories of other WMRs and TVFR references
+        are evaluated at the corresponding global time \(\tau_j\), using a common time origin.
+        The nonnegative weights \(\alpha_p\) and \(\alpha_v\) balance the position and velocity costs.
+        </p>
+      <p>Gradients are propagated through the \(\mathfrak{T}_{\mathrm{MINCO}}\) trajectory parameterization,
+        accounting for both local sampling times and global timestamps when differentiating segment durations.</p>
     </div>
   </div>
 </section>

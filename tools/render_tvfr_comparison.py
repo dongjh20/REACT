@@ -46,6 +46,9 @@ STYLE = {
     'transient_legend_locations': ('upper right', 'center right', 'upper left'),
     'transient_legend_anchors': ((.98, .98), (.98, .28), (.02, .98)),
     'transient_top_headroom': (.30, 0., .45),  # Fraction of the shared row y-range.
+    'transition_label_x_seconds': 1.2,
+    'transition_label_y_fraction': .88,
+    'transition_marker_color': '#6c7883',
     'dpi': 180, 'trajectory_linewidth': 1.6, 'velocity_linewidth': 1.1,
     'trail_seconds': 6., 'trail_width_px': 2,
     'before_color': '#b96f46', 'current_color': '#286b91',
@@ -243,9 +246,9 @@ def render_figures(pairs, output):
         axes[0, col].set_title(f'{("3 → 2", "1 → 3")[col]} columns', pad=14)
         for row, label in enumerate(('Lateral velocity [m/s]', 'Forward velocity [m/s]')):
             ax = axes[row, col]
-            ax.set(xlabel='Time from switch [s]', ylabel=label,
+            ax.set(xlabel='Time from transition [s]', ylabel=label,
                    xlim=(-STYLE['pre_seconds'], STYLE['post_seconds']))
-            ax.axvline(0, color='#6c7883', ls='--', lw=1)
+            ax.axvline(0, color=STYLE['transition_marker_color'], ls='--', lw=1)
             ax.grid(alpha=.17)
         axes[2, col].set(xlabel='WMR index', ylabel='Excess lateral travel [m]', xticks=range(7))
         axes[2, col].grid(axis='y', alpha=.17)
@@ -255,6 +258,19 @@ def render_figures(pairs, output):
         hi = max(ax.get_ylim()[1] for ax in axes[row])
         for ax in axes[row]:
             ax.set_ylim(lo, hi+(hi-lo)*STYLE['transient_top_headroom'][row])
+    # Match both endpoints' axes-relative y coordinate: a horizontal arrow
+    # pointing to the event line, in the headroom above the measured curves.
+    for ax in axes[0]:
+        y = STYLE['transition_label_y_fraction']
+        ax.annotate('Transition start', xy=(0., y),
+                    xytext=(STYLE['transition_label_x_seconds'], y),
+                    xycoords=ax.get_xaxis_transform(),
+                    textcoords=ax.get_xaxis_transform(),
+                    ha='left', va='center', fontsize=STYLE['font_size'],
+                    color='#3c4650', annotation_clip=True,
+                    arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0',
+                                    color=STYLE['transition_marker_color'], lw=1.2,
+                                    relpos=(0., .5), shrinkA=4, shrinkB=0))
     handles = [Line2D([], [], color=c, lw=3, label=l) for c, l in zip(colors, LABELS)]
     bar_handles = [Patch(facecolor=c, label=l) for c, l in zip(colors, LABELS)]
     for row in range(3):

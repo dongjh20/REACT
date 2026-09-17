@@ -1,5 +1,8 @@
 /* Scoped additions; preserve the existing REACT design and metric tabs. */
 .tvfr-section { padding-top: 3.25rem; padding-bottom: 3.25rem; }
+/* Match the preceding experiment section's heading gap. */
+#real-world-experiments .motiv-contrib-block:last-child { margin-bottom: 0; }
+#tvfr-comparison { padding-top: 1.6rem; }
 .tvfr-section > .container { width: 100%; min-width: 0; max-width: 960px; }
 .tvfr-cost-card, .tvfr-cost-summary { min-width: 0; }
 .tvfr-subtitle { text-align: center; color: var(--text-secondary); font-size: 1.08rem; margin: -.5rem 0 1.6rem; }
@@ -17,6 +20,12 @@
 .tvfr-cost-card p, .tvfr-cost-summary p { line-height: 1.8; }
 .tvfr-equation { overflow-x: auto; overflow-y: hidden; padding: .25rem 0; margin: .6rem 0; }
 .tvfr-cost-summary { padding: 1rem 1.75rem; }
+
+/* Keep the motion-smoothness explanation and equation together. */
+#metric-tvfr-transients > .tvfr-caption { margin: .5rem auto; }
+#metric-tvfr-transients > .tvfr-equation { margin: .25rem 0; padding: 0; }
+#metric-tvfr-transients > .tvfr-equation mjx-container[display="true"] { margin: .25em 0; }
+
 @media (max-width: 768px) {
   .tvfr-section { padding: 2rem 1rem; }
   .tvfr-section .title.is-3 { font-size: 1.55rem; }
@@ -27,3 +36,6 @@
   .tvfr-section .contrib-metric-tab { font-size: .85rem; padding: .6rem .8rem; }
   .tvfr-equation { font-size: .86rem; }
 }
+
+/* Center display formulas; retain horizontal access on narrow screens. */
+#additional-costs .tvfr-equation mjx-container[display="true"] { text-align: center; width: max-content; min-width: 100%; }

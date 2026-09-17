@@ -69,6 +69,23 @@ class ComparisonTests(unittest.TestCase):
                 fig.canvas.draw()
                 fig.canvas.draw()
                 self.assertEqual(len(fig.axes), 6)
+                for ax in fig.axes[:4]:
+                    self.assertEqual(ax.get_xlabel(), 'Time from transition [s]')
+                for ax in fig.axes[:2]:
+                    annotations = [t for t in ax.texts if t.get_text() == 'Transition start']
+                    self.assertEqual(len(annotations), 1)
+                    note = annotations[0]
+                    self.assertEqual(note.xy[0], 0.)
+                    self.assertEqual(note.xy[1], note.get_position()[1])
+                    box = note.get_window_extent(fig.canvas.get_renderer())
+                    self.assertFalse(box.overlaps(ax.get_legend().get_window_extent()))
+                    # Check the text separately: its arrow intentionally meets
+                    # the vertical event line, but the label must clear data.
+                    from matplotlib.text import Text
+                    text_box = Text.get_window_extent(note, fig.canvas.get_renderer())
+                    for line in ax.lines:
+                        self.assertFalse(line.get_path().transformed(
+                            line.get_transform()).intersects_bbox(text_box, filled=False))
                 for ax in fig.axes:
                     legend = ax.get_legend()
                     self.assertIsNotNone(legend)
